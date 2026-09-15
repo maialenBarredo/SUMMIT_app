@@ -1,0 +1,158 @@
+[
+    {
+        "nombre": "Monte Oiz (desde Iurreta)",
+        "nivel": 1,
+        "km": 14.9,
+        "m_desnivel": 891
+    },
+    {
+        "nombre": "Urkiola (desde Mañaria)",
+        "nivel": 1,
+        "km": 6.1,
+        "m_desnivel": 554
+    },
+    {
+        "nombre": "Arrate (desde Eibar por Azitain)",
+        "nivel": 1,
+        "km": 5.0,
+        "m_desnivel": 435
+    },
+    {
+        "nombre": "Erlaitz (desde Irún)",
+        "nivel": 1,
+        "km": 3.9,
+        "m_desnivel": 412
+    },
+    {
+        "nombre": "Pike Bidea / Alto de Pike",
+        "nivel": 1,
+        "km": 2.1,
+        "m_desnivel": 227
+    },
+    {
+        "nombre": "Sollube (desde Bermeo)",
+        "nivel": 1,
+        "km": 7.7,
+        "m_desnivel": 682
+    },
+    {
+        "nombre": "Pagomakurre (desde Areatza)",
+        "nivel": 1,
+        "km": 8.9,
+        "m_desnivel": 739
+    },
+    {
+        "nombre": "Jaizkibel (desde Lezo)",
+        "nivel": 2,
+        "km": 8.1,
+        "m_desnivel": 447
+    },
+    {
+        "nombre": "Jaizkibel (desde Hondarribia)",
+        "nivel": 2,
+        "km": 9.1,
+        "m_desnivel": 384
+    },
+    {
+        "nombre": "El Vivero / Ganguren (desde Galdakao)",
+        "nivel": 2,
+        "km": 5.4,
+        "m_desnivel": 421
+    },
+    {
+        "nombre": "Puerto de Orduña (desde Orduña)",
+        "nivel": 2,
+        "km": 7.8,
+        "m_desnivel": 610
+    },
+    {
+        "nombre": "Puerto de Herrera (desde Peciña)",
+        "nivel": 2,
+        "km": 5.6,
+        "m_desnivel": 472
+    },
+    {
+        "nombre": "Azurki (desde Zestoa)",
+        "nivel": 2,
+        "km": 14.4,
+        "m_desnivel": 816
+    },
+    {
+        "nombre": "Karakate (desde Soraluze)",
+        "nivel": 2,
+        "km": 8.0,
+        "m_desnivel": 612
+    },
+    {
+        "nombre": "Aitzorrotz / Deskarga (desde Ormaiztegi)",
+        "nivel": 3,
+        "km": 6.3,
+        "m_desnivel": 310
+    },
+    {
+        "nombre": "Zaldiaran (desde Vitoria-Gasteiz)",
+        "nivel": 3,
+        "km": 4.4,
+        "m_desnivel": 218
+    },
+    {
+        "nombre": "Dima (desde Igorre)",
+        "nivel": 3,
+        "km": 7.2,
+        "m_desnivel": 340
+    },
+    {
+        "nombre": "Bikotx-Gane (desde Areatza)",
+        "nivel": 3,
+        "km": 4.8,
+        "m_desnivel": 385
+    },
+    {
+        "nombre": "Otzaurte (desde Zegama)",
+        "nivel": 3,
+        "km": 3.7,
+        "m_desnivel": 288
+    },
+    {
+        "nombre": "Mandubia (desde Beasain)",
+        "nivel": 3,
+        "km": 6.8,
+        "m_desnivel": 352
+    },
+    {
+        "nombre": "Puerto de Azazeta (desde Maeztu)",
+        "nivel": 3,
+        "km": 6.2,
+        "m_desnivel": 235
+    },
+    {
+        "nombre": "Puerto de Vitoria (desde Berrosteguieta)",
+        "nivel": 4,
+        "km": 4.1,
+        "m_desnivel": 164
+    },
+    {
+        "nombre": "Monte Igueldo (desde San Sebastián)",
+        "nivel": 4,
+        "km": 1.7,
+        "m_desnivel": 106
+    },
+    {
+        "nombre": "Alto de Andollu (desde Vitoria-Gasteiz)",
+        "nivel": 4,
+        "km": 2.5,
+        "m_desnivel": 85
+    },
+    {
+        "nombre": "Unbe (desde Elorrieta / Bilbao)",
+        "nivel": 4,
+        "km": 4.5,
+        "m_desnivel": 210
+    },
+    {
+        "nombre": "Gartxeta (desde Markina)",
+        "nivel": 4,
+        "km": 3.2,
+        "m_desnivel": 145
+    }
+]

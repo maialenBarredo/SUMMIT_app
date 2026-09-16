@@ -43,20 +43,53 @@ function renderParches(data) {
         const km = puerto.km || 0;
         const desnivel = puerto.m_desnivel || 0;
         const logo = puerto.logo || getPuertoLogo(nombre);
+        const fecha = puerto.fecha_conseguido || puerto.fecha || "Sin registrar";
+        const tiempo = puerto.tiempo || puerto.tiempo_subida || "Sin registrar";
 
         return `
-            <article class="puerto" data-nivel="${nivel}">
-                <div class="puertoLogoWrap">
-                    <img src="../images/chapas/${logo}.png" alt="${nombre}" class="chapa">
-                </div>
-                <div class="puertoInfo">
-                    <h3>${nombre}</h3>
-                    <p class="nivelBadge">Nivel ${nivel}</p>
-                    <p>${km} km · ${desnivel} m</p>
+            <article class="puerto" data-nivel="${nivel}" tabindex="0" role="button" aria-pressed="false" aria-label="Ver información de ${nombre}">
+                <div class="puertoCard">
+                    <div class="puertoCara puertoFrontal">
+                        <div class="puertoLogoWrap">
+                            <img src="../images/chapas/${logo}.png" alt="${nombre}" class="chapa">
+                        </div>
+                        <div class="puertoInfo">
+                            <h3>${nombre}</h3>
+                            <p class="nivelBadge">Nivel ${nivel}</p>
+                            <p>${km} km · ${desnivel} m</p>
+                        </div>
+                    </div>
+                    <div class="puertoCara puertoTrasero" aria-hidden="true">
+                        <span class="puertoBackKicker">Puerto conquistado</span>
+                        <h3>${nombre}</h3>
+                        <dl class="puertoDetalle">
+                            <div><dt>Conseguido</dt><dd>${fecha}</dd></div>
+                            <div><dt>Tiempo</dt><dd>${tiempo}</dd></div>
+                            <div><dt>Distancia</dt><dd>${km} km</dd></div>
+                            <div><dt>Desnivel</dt><dd>${desnivel} m</dd></div>
+                        </dl>
+                        <span class="puertoBackHint">Clica para volver</span>
+                    </div>
                 </div>
             </article>
         `;
     }).join("");
+
+    contenedor.querySelectorAll(".puerto").forEach((tarjeta) => {
+        const alternarGiro = () => {
+            const girada = tarjeta.classList.toggle("is-flipped");
+            tarjeta.setAttribute("aria-pressed", String(girada));
+            tarjeta.querySelector(".puertoTrasero").setAttribute("aria-hidden", String(!girada));
+        };
+
+        tarjeta.addEventListener("click", alternarGiro);
+        tarjeta.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                alternarGiro();
+            }
+        });
+    });
 }
 
 function filtrarParches(nivel) {

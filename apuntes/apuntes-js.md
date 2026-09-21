@@ -1,67 +1,80 @@
 # Apuntes de JavaScript
 
-## 1. Objetivo del código
+## 1. Objetivo del código actual
 
-JavaScript se encarga de convertir los datos de los puertos en tarjetas visuales y de controlar su interacción.
+El JavaScript del proyecto actual se encarga de dos tareas principales:
 
-Las tareas principales son:
+- cargar la información desde `data/puertosPV.json`
+- renderizar el contenido dinámico en la interfaz
 
-- Cargar los puertos desde `data/puertosPV.json`.
-- Utilizar datos de respaldo si el archivo no se puede cargar.
-- Crear el HTML de cada tarjeta.
-- Preparar la información de la cara frontal.
-- Preparar la información de la cara trasera.
-- Activar el giro con clic.
-- Activar el giro con teclado.
-- Mantener el estado accesible de la tarjeta.
-- Filtrar las tarjetas por nivel.
+Además, también controla:
 
----
+- la interacción del menú hamburguesa
+- el efecto de giro de las tarjetas
+- el comportamiento de los filtros por nivel
 
-## 2. Datos de respaldo
+## 2. Carga de datos
 
-El archivo comienza con una lista llamada `puertoFallback`.
+La pantalla de puertos usa `fetch` para obtener la lista de puertos:
 
 ```javascript
-const puertoFallback = [
-    {
-        nombre: "Monte Oiz (desde Iurreta)",
-        nivel: 1,
-        km: 14.9,
-        m_desnivel: 891,
-        logo: "monte-oiz"
+async function cargarPuertos() {
+    const respuesta = await fetch("../../data/puertosPV.json");
+    if (!respuesta.ok) {
+        throw new Error("No se pudo cargar la lista de puertos");
     }
-];
+
+    todosLosPuertos = await respuesta.json();
+    renderPuertos(todosLosPuertos);
+}
 ```
 
-Estos datos se utilizan si falla la petición al archivo JSON.
+Esto permite que el contenido sea dinámico y que no esté fijo en el HTML. Cuando la carga funciona, el valor `todosLosPuertos` se usa para renderizar la galería.
 
-El respaldo evita que la sección de medallas quede completamente vacía si:
+## 3. Renderizado de puertos
 
-- El archivo no existe.
-- Hay un error de red.
-- La página se abre en un contexto que impide realizar `fetch`.
-- El JSON tiene un problema de formato.
-
----
-
-## 3. Lista global de puertos
+La función `renderPuertos` toma los datos y los inserta en el DOM:
 
 ```javascript
-let todosLosPuertos = [];
+function renderPuertos(data) {
+    const contenedor = document.getElementById("puertosContainer");
+    if (!contenedor) return;
+
+    contenedor.innerHTML = data.map((puerto) => {
+        const nombre = puerto.nombre || "Puerto sin nombre";
+        const nivel = puerto.nivel || 1;
+        const logo = puerto.logo || getPuertoLogo(nombre);
+
+        return `
+            <article class="puerto-item">
+                <div class="puerto-item-image">
+                    <img src="../../images/chapas/${logo}.png" alt="Chapa de ${nombre}">
+                </div>
+                <div class="puerto-item-content">
+                    <span class="puerto-item-level">Nivel ${nivel}</span>
+                    <h2>${nombre}</h2>
+                    <dl class="puerto-item-details">
+                        <div>
+                            <dt>Distancia</dt>
+                            <dd>${puerto.km || 0} km</dd>
+                        </div>
+                        <div>
+                            <dt>Desnivel</dt>
+                            <dd>${puerto.m_desnivel || 0} m</dd>
+                        </div>
+                    </dl>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
 ```
 
-Esta variable guarda todos los puertos cargados.
+La clave aquí es que se genera el HTML desde datos y no está escrito a mano en el archivo HTML.
 
-Se necesita conservar la lista completa porque los filtros trabajan sobre ella.
+## 4. Logo por defecto
 
-Si se guardara únicamente el resultado filtrado, al cambiar de nivel se podrían perder los elementos que ya no están visibles.
-
----
-
-## 4. Selección del logo
-
-La función `getPuertoLogo(nombre)` intenta encontrar una imagen conocida a partir del nombre del puerto.
+Cuando un puerto no llega con un `logo` concreto, el código intenta deducirlo a partir del nombre:
 
 ```javascript
 function getPuertoLogo(nombre) {
@@ -69,335 +82,83 @@ function getPuertoLogo(nombre) {
 
     if (texto.includes("oiz")) return "monte-oiz";
     if (texto.includes("urkiola")) return "urkiola";
+    if (texto.includes("zaldiaran")) return "zaldiaran";
     return "puerto-bloqueado";
 }
 ```
 
-### Funcionamiento
+Esto evita que la galería quede rotando con imágenes faltantes.
 
-1. Convierte el nombre a minúsculas.
-2. Comprueba si contiene `oiz`.
-3. Comprueba si contiene `urkiola`.
-4. Si no coincide con ningún caso, devuelve `puerto-bloqueado`.
+## 5. Menú hamburguesa
 
-La tarjeta puede proporcionar su propio logo mediante `puerto.logo`. Si no lo hace, se utiliza esta función.
-
----
-
-## 5. Entrada de `renderParches`
-
-La función que genera las tarjetas es:
+La hamburguesa está conectada a la sidebar con lógica simple y eficaz:
 
 ```javascript
-function renderParches(data) {
-    const contenedor = document.getElementById("parchesContainer");
+const menuButton = document.querySelector(".menu-toggle");
+const sidebar = document.querySelector(".sidebar");
 
-    if (!contenedor) return;
+if (menuButton && sidebar) {
+    const aplicarEstadoMenu = (abierto) => {
+        document.body.classList.toggle("sidebar-collapsed", !abierto);
+        menuButton.setAttribute("aria-expanded", String(abierto));
+        sidebar.setAttribute("aria-hidden", String(!abierto));
+    };
 
-    ...
+    menuButton.addEventListener("click", () => {
+        const abierto = menuButton.getAttribute("aria-expanded") === "true";
+        aplicarEstadoMenu(!abierto);
+    });
 }
 ```
 
-Recibe `data`, que es una lista de puertos.
+La lógica usa el atributo `aria-expanded` para mantener el estado accesible y mostrar si el menú está abierto o cerrado.
 
-Primero busca el contenedor de la página. Si no existe, termina la función para evitar un error de JavaScript.
+## 6. Interacción de flip en la pantalla de inicio
 
----
+La página de inicio también tiene tarjetas de parches con efecto de volteo. La lógica hace lo siguiente:
 
-## 6. Valores de cada puerto
-
-Dentro de `data.map`, se preparan los datos que utilizará la plantilla HTML:
-
-```javascript
-const nombre = puerto.nombre || "Puerto";
-const nivel = puerto.nivel || 1;
-const km = puerto.km || 0;
-const desnivel = puerto.m_desnivel || 0;
-const logo = puerto.logo || getPuertoLogo(nombre);
-```
-
-Cada expresión tiene un valor alternativo:
-
-- Si no existe `nombre`, se muestra `Puerto`.
-- Si no existe `nivel`, se utiliza el nivel `1`.
-- Si no existe `km`, se utiliza `0`.
-- Si no existe `m_desnivel`, se utiliza `0`.
-- Si no existe `logo`, se busca uno por el nombre.
-
-Esto permite que una tarjeta se pueda generar aunque falte algún dato secundario.
-
----
-
-## 7. Fecha y tiempo
-
-Los nuevos campos se preparan así:
-
-```javascript
-const fecha = puerto.fecha_conseguido || puerto.fecha || "Sin registrar";
-const tiempo = puerto.tiempo || puerto.tiempo_subida || "Sin registrar";
-```
-
-El código admite dos nombres para cada dato.
-
-### Fecha
-
-Primero busca:
-
-```javascript
-puerto.fecha_conseguido
-```
-
-Si no existe, busca:
-
-```javascript
-puerto.fecha
-```
-
-Si no existe ninguno, muestra:
-
-```text
-Sin registrar
-```
-
-### Tiempo
-
-Primero busca:
-
-```javascript
-puerto.tiempo
-```
-
-Si no existe, busca:
-
-```javascript
-puerto.tiempo_subida
-```
-
-Si no existe ninguno, muestra:
-
-```text
-Sin registrar
-```
-
-La interfaz está preparada aunque el JSON actual todavía no incluya esos campos.
-
----
-
-## 8. Plantilla HTML creada desde JavaScript
-
-Cada objeto se transforma en un bloque de texto mediante una plantilla con backticks:
-
-```javascript
-return `
-    <article class="puerto" data-nivel="${nivel}" tabindex="0"
-        role="button" aria-pressed="false"
-        aria-label="Ver información de ${nombre}">
-        ...
-    </article>
-`;
-```
-
-Las expresiones `${...}` insertan datos reales dentro del HTML.
-
-Por ejemplo:
-
-```javascript
-${nombre}
-```
-
-se reemplaza por:
-
-```text
-Monte Oiz (desde Iurreta)
-```
-
----
-
-## 9. Creación de las dos caras
-
-La plantilla genera dos bloques principales:
-
-```html
-<div class="puertoCara puertoFrontal">
-    ...
-</div>
-
-<div class="puertoCara puertoTrasero" aria-hidden="true">
-    ...
-</div>
-```
-
-La cara frontal incluye el logo y los datos básicos.
-
-La cara trasera incluye:
-
-- El nombre del puerto.
-- La fecha.
-- El tiempo.
-- La distancia.
-- El desnivel.
-- Una indicación para volver a la cara frontal.
-
----
-
-## 10. Pintar todas las tarjetas
-
-Después de transformar todos los puertos, el resultado se inserta en el contenedor:
-
-```javascript
-contenedor.innerHTML = data.map((puerto) => {
-    ...
-}).join("");
-```
-
-### `map`
-
-Recorre cada puerto y genera una tarjeta.
-
-### `join("")`
-
-Une todos los fragmentos HTML en una única cadena sin separadores.
-
-### `innerHTML`
-
-Reemplaza el contenido del contenedor por las tarjetas recién generadas.
-
-Esto ocurre tanto al cargar la página como al cambiar el filtro de nivel.
-
----
-
-## 11. Buscar las tarjetas recién creadas
-
-Después de pintar el HTML, JavaScript busca todas las tarjetas:
-
-```javascript
-contenedor.querySelectorAll(".puerto").forEach((tarjeta) => {
-    ...
-});
-```
-
-Es importante hacerlo después de asignar `innerHTML` porque antes de ese momento las tarjetas todavía no existen en el DOM.
-
-Cada nueva tarjeta recibe sus propios eventos.
-
----
-
-## 12. Función para alternar el giro
-
-Dentro del bucle se define:
+- busca todas las `.puerto`
+- añade eventos de clic y teclado
+- alterna la clase `is-flipped`
+- actualiza `aria-pressed`
 
 ```javascript
 const alternarGiro = () => {
     const girada = tarjeta.classList.toggle("is-flipped");
     tarjeta.setAttribute("aria-pressed", String(girada));
-    tarjeta.querySelector(".puertoTrasero")
-        .setAttribute("aria-hidden", String(!girada));
 };
 ```
 
-Esta función centraliza todo lo que debe ocurrir al cambiar de cara.
+Esto permite que la experiencia sea usable tanto con ratón como con teclado.
 
-### Añadir o quitar la clase
+## 7. Filtros por nivel
 
-```javascript
-tarjeta.classList.toggle("is-flipped");
-```
-
-Si la clase no existe, se añade.
-
-Si ya existe, se elimina.
-
-El CSS detecta esta clase y aplica la rotación.
-
-### Guardar el estado
-
-```javascript
-const girada = ...;
-```
-
-`girada` será `true` cuando la clase se haya añadido y `false` cuando se haya eliminado.
-
-### Actualizar `aria-pressed`
-
-```javascript
-tarjeta.setAttribute("aria-pressed", String(girada));
-```
-
-Los atributos HTML reciben texto, por eso se convierte el booleano a cadena.
-
-### Actualizar `aria-hidden`
-
-```javascript
-.setAttribute("aria-hidden", String(!girada));
-```
-
-La cara trasera está oculta cuando la tarjeta no está girada y visible cuando sí lo está.
-
----
-
-## 13. Evento de clic
-
-El clic se conecta así:
-
-```javascript
-tarjeta.addEventListener("click", alternarGiro);
-```
-
-Cuando el usuario hace clic sobre una tarjeta, se ejecuta `alternarGiro`.
-
-No hace falta duplicar la lógica porque la misma función también será utilizada por los eventos de teclado.
-
----
-
-## 14. Evento de teclado
-
-La tarjeta también responde a `Enter` y a la barra espaciadora:
-
-```javascript
-tarjeta.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        alternarGiro();
-    }
-});
-```
-
-### `event.key`
-
-Indica qué tecla se ha pulsado.
-
-### `event.preventDefault()`
-
-Evita que la barra espaciadora desplace la página.
-
-### `alternarGiro()`
-
-Reutiliza exactamente la misma acción del clic.
-
-Así se garantiza que ambos métodos se comporten igual.
-
----
-
-## 15. Por qué se utiliza `tabindex="0"`
-
-Un `article` no es un control interactivo por defecto.
-
-Al añadir `tabindex="0"`:
-
-1. La tarjeta entra en el orden normal de navegación.
-2. El usuario puede llegar a ella pulsando `Tab`.
-3. Cuando tiene el foco, puede activarla con el teclado.
-
-Esto evita que la interacción dependa exclusivamente del ratón.
-
----
-
-## 16. Filtrado por nivel
-
-La función `filtrarParches(nivel)` sigue utilizando la lista completa:
+El flujo de filtro se basa en conservar la lista completa de puertos y luego mostrar solo los que coinciden con el nivel seleccionado:
 
 ```javascript
 function filtrarParches(nivel) {
+    const lista = nivel === "todos"
+        ? todosLosPuertos
+        : todosLosPuertos.filter((puerto) => Number(puerto.nivel) === Number(nivel));
+
+    renderParches(lista);
+}
+```
+
+Esto hace que la lógica sea más clara, porque la colección completa siempre está disponible y solo se reducen los elementos visibles.
+
+## 8. Resumen
+
+El JavaScript actual es compacto y está bien dividido en responsabilidades:
+
+- carga de datos
+- renderizado
+- generación de logos por defecto
+- gestión del menú
+- interacción visual de tarjetas
+- filtros por nivel
+
+Eso permite que la app pueda crecer sin perder claridad ni organización.
     if (!todosLosPuertos.length) return;
 
     const lista = nivel === "todos"

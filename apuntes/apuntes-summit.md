@@ -1,222 +1,106 @@
-cat ~/.ssh/id_rsa.pub# Apuntes del proyecto SUMMIT
+# Apuntes de SUMMIT
 
-Fecha: 15 de septiembre de 2026
+## Visión general del proyecto
 
-Este documento recoge todo lo que hemos hecho hoy en el proyecto, con una explicación clara de las funciones y los elementos utilizados en HTML, CSS y JavaScript.
+SUMMIT nace como una idea de producto para combinar ciclismo, rutas y coleccionismo visual. La propuesta central es transformar cada puerto o ascensión en un trofeo o parche que el usuario va desbloqueando conforme completa rutas.
 
----
+En el estado actual, el proyecto ya no es solo una idea conceptual: es un prototipo web funcional con varias páginas, una estructura visual clara y datos dinámicos cargados desde un JSON.
 
-## 1. Qué es este proyecto
+## Qué forma parte del producto actual
 
-SUMMIT es una landing page / dashboard de ciclismo que muestra:
+### 1. Landing / inicio
+La página de inicio presenta la identidad del producto, la navegación y una introducción visual al estilo de la app.
 
-- una cabecera con logo y perfil
-- una barra lateral de navegación
-- un banner principal
-- estadísticas generales
-- una colección de puertos / parches
-- filtros por nivel
-- información dinámica leída desde un archivo JSON
+Incluye:
 
-La idea es simular una app de seguimiento de puertos y rutas de ciclismo, donde el usuario puede ir acumulando parches según nivel de dificultad.
+- cabecera con marca y perfil
+- sidebar de navegación
+- bloque de banner con llamado a la acción
+- tarjetas de estadísticas
+- sección de colección personal
 
----
+### 2. Colección de puertos
+La pantalla de puertos es la parte más importante del prototipo. Muestra una galería con cada puerto como una tarjeta individual.
 
-## 2. Estructura general del proyecto
+Cada tarjeta incluye:
 
-Archivos principales:
+- imagen de la chapa
+- nombre del puerto
+- nivel de dificultad
+- distancia y desnivel
+- opción de giro para ver más detalle
 
-- index.html -> estructura de la página
-- styles.css -> visual y diseño
-- app.js -> lógica de datos y filtros
-- data/puertosPV.json -> información de los puertos
-- images/ -> imágenes, logos y chapas
+### 3. Retos
+La vista de retos está pensada para ampliar la experiencia de la aplicación más allá del simple registro y la colección.
 
----
+Se estructura como una segunda zona de producto donde el usuario puede:
 
-## 3. HTML: estructura y funciones de cada bloque
+- ver objetivos
+- participar en retos
+- progresar en distintas categorías
 
-### 3.1 El documento base
+### 4. Datos
+La información no está fija en el HTML. Se lee desde `data/puertosPV.json`, que permite trabajar de forma más limpia y escalable.
 
-En HTML empezamos siempre con:
+Esto ayuda a:
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>SUMMIT</title>
-</head>
-<body>
-</body>
-</html>
-```
+- separar contenido de presentación
+- reutilizar la misma lógica en distintas vistas
+- preparar la app para futuras integraciones reales
 
-Esto define:
+## Arquitectura visual del prototipo
 
-- DOCTYPE: indica que es un documento HTML5
-- html: raíz del documento
-- head: metadata, enlaces, título
-- body: contenido visible
+La app se organiza con estas capas:
 
-### 3.2 Header
+- `header`: marca y acciones principales
+- `sidebar`: navegación del producto
+- `main`: contenido principal por página
+- `footer`: cierre visual y enlaces sociales
 
-```html
-<header>
-  <div class="logo_header">
-    <img class="logo_headerIMG" src="../images/logo/summit_logo3.png">
-  </div>
+Aunque todavía es un prototipo, esta estructura ya prepara la base para una app más completa y con navegación por secciones.
 
-  <div class="titulo_header">
-    <h1>SUMMIT</h1>
-  </div>
+## Estilo visual
 
-  <div class="miPerfil_header">
-    <i class="fa-solid fa-circle-user"></i>
-    <p>Mi Perfil</p>
-  </div>
-</header>
-```
+El sistema visual actual se apoya en varias decisiones claves:
 
-Función:
+- fondo oscuro para el header y la sidebar
+- tonos verdes y tierra para reforzar la identidad de recorrido y naturaleza
+- códigos de color por nivel para diferenciar dificultad
+- tipografías de estilo editorial para los títulos
+- uso de iconos para mejorar legibilidad y ritmo visual
 
-- crea la barra superior de la app
-- contiene el logo, el título y el perfil del usuario
-- ayuda a dar identidad a la marca
+## Relación con el concepto de colección
 
-### 3.3 Sidebar o barra lateral
+La idea importante es que cada puerto no solo se ve como dato, sino como un objeto coleccionable. El diseño intenta que la sensación sea parecida a la de una colección de cartas o medallas, donde la dificultad, el nombre y la ruta forman parte del valor del elemento.
 
-```html
-<aside class="sidebar">
-  <div class="logo">
-    <img class="logo_sidebar" src="../images/logo/summit_logo2.png">
-  </div>
+Eso se ve en:
 
-  <div class="links">
-    <a href="#"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
-    <a href="#"><i class="fa-solid fa-mountain"></i><span>Puertos</span></a>
-    <a href="#"><i class="fa-solid fa-medal"></i><span>Mis Parches</span></a>
-  </div>
-</aside>
-```
+- el uso de chapas visuales
+- los colores diferenciados por nivel
+- la tarjeta con giro para revelar información adicional
+- la estructura de catálogo y filtros
 
-Función:
+## Fase actual del producto
 
-- permite navegar entre secciones de la app
-- organiza la interfaz en una columna lateral
-- mantiene la estructura limpia y usable
+En este momento el proyecto se ha centrado más en la validación visual y de flujo UX que en la lógica de backend. Es decir:
 
-### 3.4 Banner principal
+- la navegación funciona
+- la visualización de puertos está resuelta
+- la colección se presenta bien en varias pantallas
+- el estilo general es coherente
+- la lógica de datos ya está preparada para ampliarse
 
-```html
-<div class="banner">
-  <p class="banner-kicker">Euskal Herria · Expansión 01</p>
-  <h1>Cada puerto,<br>una historia</h1>
-  <p class="banner-copy">Sube. Tus rutas ...</p>
-  <a class="banner-button" href="#puertos">Explorar los puertos de EH</a>
-</div>
-```
+## Siguientes pasos sugeridos
 
-Función:
+1. Añadir persistencia para guardar logros del usuario.
+2. Conectar con Strava o algún origen de datos real.
+3. Expandir la vista de retos con más variedad de objetivos.
+4. Reforzar el diseño responsive para móviles.
+5. Preparar una estructura más robusta de componentes reutilizables.
 
-- hace la primera impresión visual
-- presenta la identidad del producto
-- llama la atención con una imagen de fondo y un botón CTA
+## Resumen
 
-### 3.5 Estadísticas
-
-```html
-<div class="recuadros" id="stats">
-  <div class="stat-tile">
-    <i class="fa-solid fa-mountain-sun"></i>
-    <span class="stat-valor">104</span>
-    <span class="stat-label">puertos subidos</span>
-  </div>
-</div>
-```
-
-Función:
-
-- resumen visual de métricas clave
-- ayuda a reforzar la identidad del usuario y del proyecto
-- se representa como mini paneles con iconos y valores
-
-### 3.6 Sección de Mis Parches
-
-```html
-<div class="miColeccion">
-  <div class="misParches">
-    <h2>Mis Parches</h2>
-
-    <div class="filtroNiveles">
-      <a class="levelAll-button" href="#todos">Todos</a>
-      <a class="levelOne-button" href="#nivel1">Nivel 1</a>
-      <a class="levelTwo-button" href="#nivel2">Nivel 2</a>
-      <a class="levelThree-button" href="#nivel3">Nivel 3</a>
-      <a class="levelFour-button" href="#nivel4">Nivel 4</a>
-    </div>
-
-    <div class="parches" id="parchesContainer" aria-live="polite"></div>
-  </div>
-</div>
-```
-
-Función:
-
-- es la parte clave de la app
-- contiene los filtros por nivel
-- tiene un contenedor vacío que luego rellena JavaScript con las tarjetas
-
-### 3.7 Enlace a Font Awesome
-
-```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-```
-
-Función:
-
-- importa iconos de soporte para los botones, perfil, sidebar y estadísticas
-- permite añadir símbolos sin crear imágenes
-
----
-
-## 4. CSS: funciones y conceptos utilizados
-
-El archivo styles.css es donde se define el “look and feel” de la aplicación.
-
-Si quieres poder explicarlo todo en una prueba o conversación, lo importante no es memorizar cada línea, sino entender la lógica del diseño: qué objetivo tiene cada bloque, qué propiedad lo controla y cómo se coordinan entre sí.
-
-### 4.1 Variables CSS
-
-```css
-:root {
-  --color-forest: #172A27;
-  --color-mountain: #647A68;
-  --color-terracotta: #C97852;
-  --level-1: #8FA58A;
-  --level-2: #718EA3;
-  --level-3: #C97852;
-  --level-4: #873F3F;
-}
-```
-
-Función:
-
-- centralizan los colores del proyecto
-- evitan repetir valores en todo el CSS
-- permiten cambiar el tema con menos trabajo
-- hacen que el código sea más legible y más fácil de mantener
-
-Cuando escribes var(--color-forest), el navegador sustituye ese valor por el código hexadecimal. Es como tener una paleta de colores guardada en una caja.
-
-### 4.2 Cómo funciona el documento y el body
-
-```css
-body {
-  margin: 0;
-  background-color: var(--background);
-}
-```
+SUMMIT está pasando de una idea conceptual a un prototipo con identidad clara y navegación funcional. La base de producto ya está en marcha: marca, colecciones, puertos, retos y estructura de páginas. Lo que sigue es convertir ese prototipo en una experiencia más completa, conectada y real.
 
 Esto hace tres cosas clave:
 

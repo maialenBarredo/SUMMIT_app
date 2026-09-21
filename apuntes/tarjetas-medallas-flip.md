@@ -1,120 +1,45 @@
 # Tarjetas de medallas con efecto flip
 
-## 1. Objetivo del cambio
+## 1. Qué hace este efecto
 
-Se ha modificado la sección **Mis Parches** de SUMMIT para que cada tarjeta de un puerto pueda girarse al hacer clic.
+Las tarjetas del catálogo de puertos tienen un efecto visual de giro para mostrar más información sin saturar la vista inicial.
 
-Antes, cada tarjeta mostraba únicamente una vista fija con:
+La cara frontal conserva la identidad básica del puerto:
 
-- La imagen de la chapa o medalla.
-- El nombre del puerto.
-- El nivel de dificultad.
-- La distancia de la subida.
-- El desnivel acumulado.
+- nombre
+- nivel
+- distancia
+- desnivel
+- chapa o imagen identificativa
 
-Ahora cada tarjeta tiene dos caras:
+La cara trasera puede mostrar detalle extra del logro, como el estado del puerto o más contextos de la ascensión.
 
-- **Cara frontal:** mantiene la información visual que ya existía.
-- **Cara trasera:** muestra información adicional del logro, como la fecha en la que se consiguió, el tiempo empleado, la distancia y el desnivel.
+## 2. Estructura de la tarjeta
 
-El giro funciona tanto con el ratón como con el teclado.
-
----
-
-## 2. Archivos modificados
-
-El cambio se ha repartido entre dos archivos existentes:
-
-### `src/app.js`
-
-Se encarga de:
-
-- Crear el HTML de cada tarjeta.
-- Leer los datos de cada puerto.
-- Generar la cara frontal y la cara trasera.
-- Escuchar los clics y las pulsaciones de teclado.
-- Añadir o quitar la clase que activa el giro.
-
-### `src/styles.css`
-
-Se encarga de:
-
-- Crear el efecto visual de tarjeta en tres dimensiones.
-- Ocultar la cara que queda detrás.
-- Girar la tarjeta 180 grados.
-- Diseñar la información de la cara trasera.
-- Mantener los colores de borde correspondientes a cada nivel.
-- Mostrar un indicador visual cuando la tarjeta recibe el foco del teclado.
-
-No ha sido necesario modificar `src/index.html` porque las tarjetas se insertan dinámicamente dentro de este elemento:
-
-```html
-<div class="parches" id="parchesContainer" aria-live="polite"></div>
-```
-
----
-
-## 3. Cómo funcionaba antes
-
-La función `renderParches(data)` recibía una lista de puertos y generaba una tarjeta por cada elemento.
-
-La estructura anterior era equivalente a esta:
-
-```html
-<article class="puerto" data-nivel="1">
-    <div class="puertoLogoWrap">
-        <img src="../images/chapas/monte-oiz.png" alt="Monte Oiz" class="chapa">
-    </div>
-
-    <div class="puertoInfo">
-        <h3>Monte Oiz (desde Iurreta)</h3>
-        <p class="nivelBadge">Nivel 1</p>
-        <p>14.9 km · 891 m</p>
-    </div>
-</article>
-```
-
-Era una tarjeta plana. Aunque tenía `cursor: pointer`, todavía no tenía ninguna interacción asociada al clic.
-
----
-
-## 4. Nueva estructura HTML de cada tarjeta
-
-Cada tarjeta ahora tiene un contenedor exterior, un contenedor interior giratorio y dos caras.
-
-La estructura general es:
+La tarjeta se genera con una estructura básica como esta:
 
 ```html
 <article class="puerto" tabindex="0" role="button" aria-pressed="false">
     <div class="puertoCard">
         <div class="puertoCara puertoFrontal">
-            <!-- Información visible inicialmente -->
+            ...
         </div>
 
-        <div class="puertoCara puertoTrasero" aria-hidden="true">
-            <!-- Información adicional del logro -->
+        <div class="puertoCara puertoTrasera" aria-hidden="true">
+            ...
         </div>
     </div>
 </article>
 ```
 
-### Contenedor exterior: `.puerto`
+Tiene dos partes esenciales:
 
-Es la tarjeta que recibe la interacción del usuario.
+- `puertoCard`: el bloque que rota en 3D
+- `puertoCara`: cada una de las caras visible y oculta
 
-Tiene estas funciones:
+## 3. Cómo se activa
 
-- Define la perspectiva 3D mediante CSS.
-- Recibe el clic.
-- Puede recibir el foco del teclado gracias a `tabindex="0"`.
-- Se identifica como un botón mediante `role="button"`.
-- Indica si está girada con `aria-pressed`.
-
-### Contenedor interior: `.puertoCard`
-
-Es la pieza que realmente rota.
-
-Cuando recibe la clase `is-flipped`, se aplica esta transformación:
+La clase `is-flipped` es la que activa el giro. Cuando una tarjeta recibe esta clase, el CSS rota el bloque interior:
 
 ```css
 .puerto.is-flipped .puertoCard {
@@ -122,121 +47,43 @@ Cuando recibe la clase `is-flipped`, se aplica esta transformación:
 }
 ```
 
-### Caras: `.puertoCara`
+La lógica del JavaScript añade o elimina esa clase al hacer clic o al pulsar Enter/Espacio.
 
-Las dos caras ocupan la misma posición usando:
+## 4. Por qué funciona bien esta solución
 
-```css
-position: absolute;
-inset: 0;
-```
+Porque separa claramente:
 
-La cara que no está visible se oculta con:
+- la interacción del usuario
+- el bloque que gira
+- la información que se muestra en cada cara
 
-```css
-backface-visibility: hidden;
-```
+Eso hace que el efecto sea más controlable y más fácil de mantener.
 
----
+## 5. Importancia de la accesibilidad
 
-## 5. Información de la cara frontal
+El efecto no solo es visual: también tiene soporte accesible.
 
-La cara frontal conserva el diseño original de las tarjetas.
+Se usan atributos como:
 
-Incluye:
+- `aria-pressed`
+- `aria-hidden`
+- `tabindex="0"`
+- `role="button"`
 
-```html
-<div class="puertoLogoWrap">
-    <img src="../images/chapas/${logo}.png" alt="${nombre}" class="chapa">
-</div>
+Esto permite que la tarjeta se comporte como un control interactivo y que el estado visual se refleje correctamente para tecnologías de asistencia.
 
-<div class="puertoInfo">
-    <h3>${nombre}</h3>
-    <p class="nivelBadge">Nivel ${nivel}</p>
-    <p>${km} km · ${desnivel} m</p>
-</div>
-```
+## 6. Qué aporta al producto
 
-Los valores se obtienen del objeto de cada puerto:
+La flipped card ayuda a:
 
-- `nombre`: nombre de la subida.
-- `nivel`: dificultad.
-- `km`: distancia.
-- `m_desnivel`: desnivel positivo.
-- `logo`: nombre del archivo de la chapa, cuando existe.
+- ahorrar espacio visual
+- mostrar más detalle sin saturar la vista
+- dar sensación de riqueza y experiencia premium
+- reforzar la identidad de “colección” del producto
 
-Si el puerto no tiene un logo indicado, se usa la función `getPuertoLogo(nombre)` para intentar encontrar una imagen a partir del nombre.
+## 7. Resumen
 
----
-
-## 6. Información de la cara trasera
-
-La cara posterior muestra un resumen del logro:
-
-```html
-<div class="puertoCara puertoTrasero" aria-hidden="true">
-    <span class="puertoBackKicker">Puerto conquistado</span>
-    <h3>${nombre}</h3>
-
-    <dl class="puertoDetalle">
-        <div>
-            <dt>Conseguido</dt>
-            <dd>${fecha}</dd>
-        </div>
-        <div>
-            <dt>Tiempo</dt>
-            <dd>${tiempo}</dd>
-        </div>
-        <div>
-            <dt>Distancia</dt>
-            <dd>${km} km</dd>
-        </div>
-        <div>
-            <dt>Desnivel</dt>
-            <dd>${desnivel} m</dd>
-        </div>
-    </dl>
-
-    <span class="puertoBackHint">Clica para volver</span>
-</div>
-```
-
-Se ha utilizado la estructura HTML `dl`, `dt` y `dd` porque representa correctamente una lista de datos etiquetados:
-
-- `dl`: lista de detalles.
-- `dt`: etiqueta del dato.
-- `dd`: valor del dato.
-
-Esto hace que la información sea más clara semánticamente que una colección de párrafos sin relación explícita.
-
----
-
-## 7. Fecha y tiempo de la subida
-
-El JSON actual contiene el nombre, nivel, distancia y desnivel de los puertos, pero todavía no contiene los datos de cuándo se consiguió cada medalla ni el tiempo empleado.
-
-Por eso el código busca varias propiedades posibles:
-
-```javascript
-const fecha = puerto.fecha_conseguido || puerto.fecha || "Sin registrar";
-const tiempo = puerto.tiempo || puerto.tiempo_subida || "Sin registrar";
-```
-
-El operador `||` permite utilizar la primera propiedad que tenga un valor.
-
-El orden es:
-
-1. Buscar `fecha_conseguido`.
-2. Si no existe, buscar `fecha`.
-3. Si ninguna existe, mostrar `Sin registrar`.
-
-Para el tiempo:
-
-1. Buscar `tiempo`.
-2. Si no existe, buscar `tiempo_subida`.
-3. Si ninguna existe, mostrar `Sin registrar`.
-
-Esto permite añadir datos reales más adelante sin tener que cambiar de nuevo la estructura de las tarjetas.
+La tarjeta con efecto flip es una pieza central del diseño de SUMMIT. No solo funciona como un objeto visual, sino como un mecanismo de interacción que apoya tanto la UX como la identidad del producto.
 
 ### Ejemplo de un puerto con datos completos
 

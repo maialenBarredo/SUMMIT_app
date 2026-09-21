@@ -338,9 +338,15 @@ main {
     background-color: rgba(250, 250, 247, 0.1);
 }
 
-.links a.activo {
-    color: var(--color-charcoal);
+
+.links a.is-active {
     background-color: var(--color-ochre);
+    color: var(--color-charcoal);
+}
+
+.links a.is-active:hover {
+    background-color: var(--color-ochre);
+    color: var(--color-charcoal);
 }
 
 .sidebar-strava {
@@ -392,7 +398,7 @@ main {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    background-image: linear-gradient(90deg, rgba(23, 42, 39, 0.9) 0%, rgba(23, 42, 39, 0.52) 56%, rgba(23, 42, 39, 0.12) 100%), url(../images/photo/fotoBanner.jpg);
+    background-image: linear-gradient(90deg, rgba(23, 42, 39, 0.9) 0%, rgba(23, 42, 39, 0.52) 56%, rgba(23, 42, 39, 0.12) 100%), url(../../images/photo/fotoBanner.jpg);
     background-size: cover;
     background-position: center;
     color: var(--color-snow);
@@ -525,6 +531,27 @@ main {
 }
 
 .levelFour-button:hover {
+    background-color: var(--level-4);
+}
+
+.levelAll-button.is-active {
+    background-color: var(--border-dark);
+    color: #18201F;
+}
+
+.levelOne-button.is-active {
+    background-color: var(--level-1);
+}
+
+.levelTwo-button.is-active {
+    background-color: var(--level-2);
+}
+
+.levelThree-button.is-active {
+    background-color: var(--level-3);
+}
+
+.levelFour-button.is-active {
     background-color: var(--level-4);
 }
 
@@ -709,7 +736,7 @@ main {
 
 .chapa {
     width: 76%;
-    max-width: 220px;
+    max-width: 180px;
     height: auto;
     display: block;
     object-fit: contain;

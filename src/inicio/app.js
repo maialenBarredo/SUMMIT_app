@@ -1,26 +1,3 @@
-const puertoFallback = [
-    {
-        nombre: "Monte Oiz (desde Iurreta)",
-        nivel: 1,
-        km: 14.9,
-        m_desnivel: 891,
-        logo: "monte-oiz"
-    },
-    {
-        nombre: "Urkiola (desde Mañaria)",
-        nivel: 1,
-        km: 6.1,
-        m_desnivel: 554,
-        logo: "urkiola"
-    },
-    {
-        nombre: "Arrate (desde Eibar por Azitain)",
-        nivel: 1,
-        km: 5.0,
-        m_desnivel: 435,
-        logo: "puerto-bloqueado"
-    }
-];
 
 let todosLosPuertos = [];
 
@@ -51,7 +28,7 @@ function renderParches(data) {
                 <div class="puertoCard">
                     <div class="puertoCara puertoFrontal">
                         <div class="puertoLogoWrap">
-                            <img src="../images/chapas/${logo}.png" alt="${nombre}" class="chapa">
+                            <img src="../../images/chapas/${logo}.png" alt="${nombre}" class="chapa">
                         </div>
                         <div class="puertoInfo">
                             <h3>${nombre}</h3>
@@ -103,9 +80,16 @@ function filtrarParches(nivel) {
 }
 
 function activarBotonNivel(nivel) {
+    const clasesPorNivel = {
+        1: "levelOne-button",
+        2: "levelTwo-button",
+        3: "levelThree-button",
+        4: "levelFour-button"
+    };
+
     document.querySelectorAll(".filtroNiveles a").forEach((boton) => {
         const activo = boton.classList.contains("levelAll-button") && nivel === "todos"
-            || boton.classList.contains(`level${nivel}-button`) && nivel !== "todos";
+            || boton.classList.contains(clasesPorNivel[nivel]) && nivel !== "todos";
 
         boton.classList.toggle("is-active", activo);
     });
@@ -129,14 +113,28 @@ function bindFiltros() {
 
 async function cargarPuertos() {
     try {
-        const respuesta = await fetch("../data/puertosPV.json");
+        const rutaDatos = new URL("../../data/puertosPV.json", document.baseURI);
+        const respuesta = await fetch(rutaDatos);
+
+        if (!respuesta.ok) {
+            throw new Error(`No se pudo cargar ${rutaDatos.pathname}: ${respuesta.status}`);
+        }
+
         const data = await respuesta.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("El archivo de puertos debe contener una lista");
+        }
+
         todosLosPuertos = data;
         bindFiltros();
+        activarBotonNivel("todos");
         filtrarParches("todos");
     } catch (error) {
+        console.error("No se pudieron cargar los puertos desde data/puertosPV.json", error);
         todosLosPuertos = puertoFallback;
         bindFiltros();
+        activarBotonNivel("todos");
         filtrarParches("todos");
     }
 }

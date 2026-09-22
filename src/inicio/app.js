@@ -71,7 +71,6 @@ function renderParches(data) {
                         <div class="puertoInfo">
                             <h3>${nombre}</h3>
                             <p class="nivelBadge">Nivel ${nivel}</p>
-                            <p>${km} km · ${desnivel} m</p>
                         </div>
                     </div>
                     <div class="puertoCara puertoTrasero" aria-hidden="true">

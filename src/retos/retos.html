@@ -5,7 +5,7 @@
 <head>
     <title>SUMMIT</title>
     <link rel="icon" href="../../images/logo/summit_logo_filled.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesRetos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -33,7 +33,7 @@
                 <img class="logo_sidebar" src="../../images/logo/summit_logo3.png">
             </div>
             <div class="links">
-                <a class="is-active" href="#" aria-current="page">
+                <a href="../inicio/indexInicio.html" aria-current="page">
                     <i class="fa-solid fa-house"></i>
                     <span>Inicio</span>
                 </a>
@@ -52,12 +52,12 @@
                     <span>Estadísticas</span>
                 </a>
 
-                <a href="../retos/retos.html">
+                <a class="is-active" href="../retos/retos.html">
                     <i class="fa-solid fa-flag-checkered"></i>
                     <span>Retos</span>
                 </a>
 
-                <a href="#">
+                <a href="../comunidad/comunidad.html">
                     <i class="fa-solid fa-users"></i>
                     <span>Comunidad</span>
                 </a>
@@ -70,11 +70,72 @@
         </aside>
 
         <section class="main-content">
-            <div class="retos-intro">
-                <p class="retos">RETOS · COLABORACIONES</p>
-                <h1>Supera tus límites y gana recompensas</h1>
-                <p>Participa en retos, alcanza nuevos objetivos y demuestra hasta dónde puedes llegar.</p>
+
+            <div class="retos-desc">
+                <div class="retos-intro">
+                    <p id="retos-kicker">RETOS · COLABORACIONES</p>
+                    <h1>
+                        <span class="line">Retos de</span>
+                        <span class="line" id="ciclismo">ciclismo</span>
+                        <span class="line">en la naturaleza</span>
+                    </h1>
+                    <p>
+                        <span class="line">Participa en retos,</span>
+                        <span class="line">alcanza nuevos objetivos haciendo el deporte que más te gusta</span>
+                        <span class="line">recibe recompensas que te ayuden a subir de nivel</span>
+                    </p>
+                </div>
+
+                <div class="retos-recuadros">
+                    <div class="reto-tile">
+                        <div class="valor-line">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span class="stat-valor">6</span>
+                        </div>
+                        <span class="stat-label">retos disponibles</span>
+                    </div>
+
+                    <div class="reto-tile">
+                        <div class="valor-line">
+                            <i class="fa-solid fa-people-group"></i>
+                            <span class="stat-valor">1.400</span>
+                        </div>
+                        <span class="stat-label">plazas disponibles</span>
+                    </div>
+
+                    <div class="reto-tile">
+                        <div class="valor-line">
+                            <i class="fa-solid fa-road"></i>
+                            <span class="stat-valor">3.000</span>
+                        </div>
+                        <span class="stat-label">km acumulados</span>
+                    </div>
+
+                    <div class="reto-tile">
+                        <div class="valor-line">
+                            <i class="fa-solid fa-mountain"></i>
+                            <span class="stat-valor">1.400</span>
+                        </div>
+                        <span class="stat-label">metros de desnivel</span>
+                    </div>
+                </div>
             </div>
+
+            <div class="coleccionRetos">
+                <div class="retosDisponibles">
+                    <h2>Retos disponibles</h2>
+                    <div class="filtroNiveles">
+                        <a class="levelAll-button" href="#todos">Todos</a>
+                        <a class="levelOne-button" href="#nivel1">Fácil</a>
+                        <a class="levelTwo-button" href="#nivel2">Intermedio</a>
+                        <a class="levelThree-button" href="#nivel3">Avanzado</a>
+                        <a class="levelFour-button" href="#nivel4">Extremo</a>
+                    </div>
+
+                    <div class="parches" id="parchesContainer" aria-live="polite"></div>
+                </div>
+            </div>
+
 
         </section>
 
@@ -98,9 +159,13 @@
             <a href="https://www.youtube.com" aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
+
+            <a href="https://github.com/maialenBarredo" aria-label="github" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
         </div>
     </footer>
-    <script src="app.js"></script>
+    <script src="appRetos.js"></script>
 </body>
 
 </html>

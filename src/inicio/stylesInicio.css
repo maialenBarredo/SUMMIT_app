@@ -1,0 +1,950 @@
+:root {
+    /* Se define la raíz del documento para guardar variables globales reutilizables. */
+    /* COLORES PRINCIPALES */
+    /* Agrupa los colores base del tema principal. */
+
+    --color-forest: #172A27;
+    /* Verde oscuro principal usado en los fondos de la app. */
+    --color-mountain: #647A68;
+    /* Verde medio para fondos secundarios o áreas de contenido. */
+    --color-stone: #8B918C;
+    /* Color gris cálido para detalles y elementos neutros. */
+    --color-cream: #F3F1EA;
+    /* Fondo claro tipo crema del diseño. */
+    --color-snow: #FAFAF7;
+    /* Blanco casi puro para texto sobre fondos oscuros. */
+    --color-charcoal: #18201F;
+    /* Color casi negro para texto principal. */
+
+
+    /* COLORES DE ACENTO */
+    /* Se definen tonos de acento para destacados visuales. */
+
+    --color-terracotta: #C97852;
+    /* Terracota para elementos de alerta o contraste. */
+    --color-ochre: #C6A15B;
+    /* Ocre para puntos de atención más suaves. */
+
+
+    /* NIVELES DE PUERTOS */
+    /* Colores asociados a dificultad de rutas o puertos. */
+
+    --level-1: #8FA58A;
+    /* Iniciación */
+    /* Verde claro para nivel de inicio. */
+    --level-2: #718EA3;
+    /* Regular */
+    /* Azul grisáceo para nivel medio. */
+    --level-3: #C97852;
+    /* Duro */
+    /* Terracota para nivel difícil. */
+    --level-4: #873F3F;
+    /* Extremo */
+    /* Rojo oscuro para nivel extremo. */
+
+
+    /* TEXTO */
+    /* Variables para tipografías y contrastes de texto. */
+
+    --text-primary: #18201F;
+    /* Color principal del texto. */
+    --text-secondary: #64706B;
+    /* Color secundario para textos menos importantes. */
+    --text-light: #FAFAF7;
+    /* Color claro para textos sobre fondos oscuros. */
+
+
+    /* FONDOS */
+    /* Variables para fondos generales de la interfaz. */
+
+    --background: #F3F1EA;
+    /* Fondo base de la página. */
+    --surface: #FAFAF7;
+    /* Fondo de tarjetas o paneles claros. */
+    --surface-dark: #172A27;
+    /* Fondo oscuro de paneles o barras. */
+
+
+    /* BORDES */
+    /* Variables para líneas y bordes visuales. */
+
+    --border: #D5D5CC;
+    /* Borde claro general. */
+    --border-dark: #64706B;
+    /* Borde más oscuro para contrastes. */
+
+
+    /* ESTADOS */
+    /* Variables para mensajes y estados. */
+
+    --success: #647A68;
+    /* Verde para éxito o confirmación. */
+    --warning: #C6A15B;
+    /* Ocre para advertencias. */
+    --danger: #873F3F;
+    /* Rojo oscuro para riesgo o error. */
+
+    --font-display: "Baloo 2", "Segoe UI", sans-serif;
+    --font-body: "Inter", "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+
+body {
+    /* Estilo general del documento body. */
+    margin: 0;
+    /* Elimina el margen predeterminado del navegador. */
+    background-color: var(--background);
+    /* Usa el color de fondo general definido. */
+}
+
+header {
+    /* Estilo del encabezado superior de la página. */
+    display: flex;
+    /* Activa el layout flexible para alinear los elementos en fila. */
+    align-items: center;
+    /* Centra verticalmente los elementos del encabezado. */
+    gap: 0.85rem;
+    /* Separación entre los elementos del header. */
+    min-height: 68px;
+    /* Altura mínima del encabezado. */
+    padding: 0 2.25rem;
+    /* Espaciado horizontal interno del encabezado. */
+    background-color: var(--color-forest);
+    /* Fondo oscuro del header. */
+    font-family: var(--font-display);
+    /* Fuente general del header. */
+    border-bottom: 1px solid var(--border);
+    /* Línea inferior de separación visual. */
+}
+
+.menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.24rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(250, 250, 247, 0.28);
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+    background-color: rgba(250, 250, 247, 0.08);
+    border-color: rgba(250, 250, 247, 0.45);
+    transform: translateY(-1px);
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--color-ochre);
+    outline-offset: 3px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 1.15rem;
+    height: 2px;
+    border-radius: 999px;
+    background-color: var(--color-snow);
+}
+
+
+.titulo_header {
+    /* Contenedor del título central del header. */
+    flex: 1 1 auto;
+    /* Ocupa el espacio restante y se adapta al ancho. */
+    display: flex;
+    /* Activa flexbox para centrar el texto. */
+    justify-content: center;
+    /* Centra el texto horizontalmente. */
+    align-items: center;
+    /* Centra el texto verticalmente. */
+    text-align: center;
+    /* Alinea el texto al centro. */
+}
+
+.titulo_header h1 {
+    /* Estilo del h1 del título del header. */
+    margin: 0;
+    /* Elimina el margen superior e inferior del h1. */
+    color: var(--color-snow);
+    /* Texto blanco claro para contraste. */
+    font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+    /* Tamaño de fuente adaptable según el ancho. */
+    font-weight: 700;
+    /* Texto en negrita. */
+    letter-spacing: 0.18em;
+    /* Espaciado entre letras para un estilo editorial. */
+}
+
+.miPerfil_header {
+    /* Contenedor del texto e icono de Mi Perfil en la derecha. */
+    flex: 0 0 auto;
+    /* Evita que el bloque se estire demasiado. */
+    margin-left: auto;
+    /* Empuja este bloque a la parte derecha del header. */
+    display: flex;
+    /* Pone el icono y el texto en una fila. */
+    align-items: center;
+    /* Alinea verticalmente icono y texto. */
+    gap: 0.55rem;
+    /* Separación entre el icono y el texto. */
+    color: var(--color-snow);
+    /* Hace visible el contenido con color blanco. */
+
+}
+
+.miPerfil_header i {
+    /* Estilo del icono del perfil. */
+    font-size: 1.05rem;
+    /* Tamaño del icono. */
+    color: var(--color-snow);
+    /* Icono blanco para contrastar con el fondo oscuro. */
+    line-height: 1;
+    /* Ajusta la altura de línea del icono. */
+}
+
+.miPerfil_header p {
+    /* Estilo del texto Mi Perfil. */
+    margin: 0;
+    /* Quita el margen por defecto. */
+    color: var(--color-snow);
+    /* Color blanco para el texto. */
+    font-size: 0.9rem;
+    /* Tamaño de texto pequeño y legible. */
+}
+
+.miPerfil_header:hover {
+    /* Efecto al pasar el cursor sobre Mi Perfil. */
+    color: var(--text-light);
+    /* Mantiene el texto claro. */
+    background-color: rgba(250, 250, 247, 0.12);
+    /* Fondo sutil al hacer hover. */
+}
+
+@media (max-width: 600px) {
+
+    /* Ajustes para pantallas pequeñas. */
+    header {
+        /* Reduce el alto y el padding del header en móviles. */
+        min-height: 72px;
+        /* Altura mínima menor para pantallas pequeñas. */
+        padding: 0 1rem;
+        /* Reduce el espacio horizontal interno. */
+    }
+
+    .logo_headerIMG {
+        /* Ajusta el tamaño del logo en versión móvil. */
+        width: 20px;
+        /* Logo más pequeño para caber mejor. */
+    }
+
+    .sidebar {
+        /* Ajusta la sidebar en pantallas chicas. */
+        width: 120px;
+        /* Reduce el ancho de la barra lateral. */
+        padding: 18px 12px;
+        /* Ajusta el padding para el espacio disponible. */
+    }
+}
+
+main {
+    /* Contenedor principal del contenido central. */
+    margin: 0;
+    /* Quita el margen por defecto. */
+    min-height: calc(100vh - 150px);
+    /* Calcula la altura restante de la pantalla. */
+
+    display: flex;
+    /* Coloca los elementos del main en fila. */
+
+    background-color: var(--color-mountain);
+    /* Fondo verde medio para la zona principal. */
+    color: var(--text-primary);
+    /* Color de texto principal del contenido. */
+    font-family: var(--font-body);
+    /* Fuente de la mayoría del contenido. */
+}
+
+.sidebar {
+    /* Barra lateral izquierda. */
+    width: 190px;
+    /* Ancho fijo de la sidebar. */
+    min-height: calc(100vh - 150px);
+    /* Altura mínima para llenar el espacio disponible. */
+
+    background-color: var(--color-forest);
+    /* Fondo oscuro de la sidebar. */
+    color: var(--text-light);
+    /* Texto claro dentro del menú lateral. */
+
+    padding: 22px 16px;
+    /* Espaciado interno de la sidebar. */
+
+    box-sizing: border-box;
+    /* Incluye padding y border en el ancho total. */
+    border-right: 1px solid var(--border);
+    /* Línea inferior de separación visual. */
+    font-family: var(--font-display);
+
+}
+
+.logo {
+    /* Contenedor del logo de la sidebar. */
+    width: 100%;
+    /* Ocupa todo el ancho disponible. */
+}
+
+.logo_sidebar {
+    /* Imagen del logo dentro de la sidebar. */
+    display: block;
+    /* Hace que la imagen quede como bloque. */
+    width: 88%;
+    /* Ajusta el ancho del logo de la sidebar. */
+    margin: 0 auto;
+    /* Centra la imagen horizontalmente. */
+}
+
+.links {
+    /* Contenedor de los enlaces del menú lateral. */
+    display: flex;
+    /* La lista se organiza en columna. */
+    flex-direction: column;
+    /* Apila los enlaces verticalmente. */
+    gap: 0.35rem;
+    /* Espacio entre cada enlace. */
+    margin-top: 2.25rem;
+    /* Separa del logo superior. */
+}
+
+.links a {
+    /* Estilo de cada enlace del menú lateral. */
+    display: block;
+    /* Hace que cada enlace tenga bloque propio. */
+    color: rgba(250, 250, 247, 0.72);
+    /* Texto casi blanco con transparencia. */
+    text-decoration: none;
+    /* Elimina el subrayado de links. */
+    padding: 0.7rem 0.75rem;
+    /* Espaciado interior de cada item. */
+    border-radius: 5px;
+    /* Bordes redondeados suaves. */
+    font-size: 0.78rem;
+    /* Tamaño pequeño de texto. */
+    transition: background-color 160ms ease, color 160ms ease;
+    /* Transición visual al hover. */
+}
+
+.links a:hover {
+    /* Efecto al pasar el mouse por un enlace. */
+    color: var(--text-light);
+    /* Texto blanco más intenso. */
+    background-color: var(--color-ochre);
+    /* Fondo semi transparente al resaltar. */
+}
+
+.links a:focus-visible {
+    color: var(--text-light);
+    background-color: rgba(250, 250, 247, 0.1);
+}
+
+
+.links a.is-active {
+    background-color: var(--color-ochre);
+    color: var(--color-charcoal);
+}
+
+.links a.is-active:hover {
+    background-color: var(--color-ochre);
+    color: var(--color-charcoal);
+}
+
+.sidebar-strava {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(250, 250, 247, 0.22);
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.sidebar-strava i {
+    color: #FC5200;
+}
+
+.sidebar-strava:hover,
+.sidebar-strava:focus-visible {
+    background-color: rgba(250, 250, 247, 0.08);
+    border-color: var(--color-ochre);
+}
+
+
+.main-content {
+    /* Contenedor general para el contenido principal. */
+    flex: 1;
+    /* Ocupa el espacio restante del layout. */
+    padding: 32px;
+    /* Espacio interior para el contenido. */
+}
+
+.main-content h1 {
+    color: var(--color-snow);
+}
+
+.banner {
+    min-height: 460px;
+    padding: clamp(2rem, 6vw, 5rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(90deg, rgba(23, 42, 39, 0.9) 0%, rgba(23, 42, 39, 0.52) 56%, rgba(23, 42, 39, 0.12) 100%), url(../../images/photo/fotoBanner.jpg);
+    background-size: cover;
+    background-position: center;
+    color: var(--color-snow);
+}
+
+.banner-kicker {
+    margin: 0 0 1rem;
+    color: var(--color-ochre);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+}
+
+.banner h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: 0.04em;
+}
+
+.banner-copy {
+    max-width: 29rem;
+    margin: 1.5rem 0 2rem;
+    color: rgba(250, 250, 247, 0.86);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.banner-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.15rem;
+    background-color: var(--color-mountain);
+    color: var(--color-snow);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: background-color 160ms ease, transform 160ms ease;
+    border-radius: 20px;
+}
+
+.banner-button:hover {
+    background-color: var(--color-forest);
+    transform: translateY(-2px);
+}
+
+.recuadros {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.stat-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: var(--surface);
+    border-top: 3px solid var(--color-ochre);
+    padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow-suave);
+    border-radius: 25px;
+}
+
+.stat-tile i {
+    color: var(--color-mountain);
+    font-size: 1.2rem;
+}
+
+.stat-valor {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-valor small {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 700px) {
+    .recuadros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .banner {
+        min-height: 430px;
+        padding: 2rem 1.5rem;
+    }
+
+    .banner h1 {
+        font-size: 42px;
+    }
+
+    .banner-copy {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .recuadros {
+        gap: 0.75rem;
+    }
+
+    .stat-tile {
+        min-height: 120px;
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 18px;
+    }
+
+    .stat-valor {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+}
+
+.levelAll-button,
+.levelOne-button,
+.levelTwo-button,
+.levelThree-button,
+.levelFour-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.15rem;
+    background-color: var(--surface-dark);
+    color: var(--color-snow);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: background-color 160ms ease, transform 160ms ease;
+    border-radius: 20px;
+}
+
+.levelAll-button:hover {
+    background-color: var(--border-dark);
+    color: #18201F
+}
+
+.levelOne-button:hover {
+    background-color: var(--level-1);
+}
+
+.levelTwo-button:hover {
+    background-color: var(--level-2);
+}
+
+.levelThree-button:hover {
+    background-color: var(--level-3);
+}
+
+.levelFour-button:hover {
+    background-color: var(--level-4);
+}
+
+.levelAll-button.is-active {
+    background-color: var(--border-dark);
+    color: #18201F;
+}
+
+.levelOne-button.is-active {
+    background-color: var(--level-1);
+}
+
+.levelTwo-button.is-active {
+    background-color: var(--level-2);
+}
+
+.levelThree-button.is-active {
+    background-color: var(--level-3);
+}
+
+.levelFour-button.is-active {
+    background-color: var(--level-4);
+}
+
+.misParches {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    background: rgba(250, 250, 247, 0.72);
+    border: 1px solid rgba(23, 42, 39, 0.08);
+    border-radius: 32px;
+    padding: 28px 26px 26px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    box-shadow: 0 18px 40px rgba(23, 42, 39, 0.08);
+}
+
+.misParches h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 3vw, 3.1rem);
+    line-height: 1;
+    color: var(--text-primary);
+    letter-spacing: -0.04em;
+}
+
+.filtroNiveles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.miColeccion {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.parches {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.puerto {
+    min-height: 260px;
+    width: 100%;
+    perspective: 1000px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.puerto[data-nivel="1"] .puertoCara {
+    border-top: 4px solid var(--level-1);
+}
+
+.puerto[data-nivel="2"] .puertoCara {
+    border-top: 4px solid var(--level-2);
+}
+
+.puerto[data-nivel="3"] .puertoCara {
+    border-top: 4px solid var(--level-3);
+}
+
+.puerto[data-nivel="4"] .puertoCara {
+    border-top: 4px solid var(--level-4);
+}
+
+.puerto:hover .puertoCard,
+.puerto:focus-visible .puertoCard {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 40px rgba(23, 42, 39, 0.12);
+}
+
+.puerto:focus-visible {
+    outline: 3px solid var(--color-ochre);
+    outline-offset: 4px;
+    border-radius: 28px;
+}
+
+.puertoCard {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    transform-style: preserve-3d;
+    transition: transform 500ms ease, box-shadow 180ms ease;
+}
+
+.puerto.is-flipped .puertoCard {
+    transform: rotateY(180deg);
+}
+
+.puertoCara {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0.8rem 1.1rem;
+    border: 1px solid rgba(23, 42, 39, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 18px 30px rgba(23, 42, 39, 0.08);
+    box-sizing: border-box;
+    backface-visibility: hidden;
+}
+
+.puertoFrontal {
+    background: linear-gradient(180deg, rgba(250, 250, 247, 0.86), rgba(236, 239, 234, 0.9));
+}
+
+.puertoTrasero {
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 1.5rem;
+    background: var(--color-forest);
+    color: var(--color-snow);
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+.puertoTrasero h3 {
+    max-width: 15rem;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.puertoBackKicker,
+.puertoBackHint {
+    color: var(--color-ochre);
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.puertoBackHint {
+    margin-top: 0.25rem;
+    color: rgba(250, 250, 247, 0.62);
+    font-size: 0.58rem;
+}
+
+.puertoDetalle {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem 1rem;
+    width: 100%;
+    margin: 0.3rem 0 0;
+}
+
+.puertoDetalle div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.puertoDetalle dt {
+    color: rgba(250, 250, 247, 0.62);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+}
+
+.puertoDetalle dd {
+    margin: 0;
+    color: var(--color-snow);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+.puertoLogoWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+}
+
+.chapa {
+    width: 76%;
+    max-width: 180px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(23, 42, 39, 0.12));
+}
+
+.puertoInfo {
+    width: 100%;
+    margin-top: 0.75rem;
+    text-align: center;
+}
+
+.puertoInfo h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+}
+
+.nivelBadge {
+    display: inline-block;
+    margin: 0.45rem 0 0.3rem;
+    padding: 0.28rem 0.6rem;
+    background: rgba(100, 122, 104, 0.12);
+    color: var(--color-forest);
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.puertoInfo p:last-child {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+#parcheNivel1,
+#parcheNivel2 {
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+    display: block;
+    border-radius: 50% 50% 42% 42% / 44% 44% 56% 56%;
+    box-shadow: 0 12px 18px rgba(23, 42, 39, 0.12);
+    border: 4px solid rgba(250, 250, 247, 0.75);
+    background: #fff;
+}
+
+@media (max-width: 900px) {
+    .parches {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .parches {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .parches {
+        grid-template-columns: 1fr;
+    }
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+footer {
+    /* Estilo del pie de página. */
+    padding: 1.25rem 2rem;
+    /* Espaciado interno del footer. */
+    background: var(--color-forest);
+    /* Fondo oscuro del footer. */
+    color: #f6f3ed;
+    /* Color claro del texto del footer. */
+    font-family: var(--font-display);
+    /* Fuente del texto del footer. */
+    font-weight: 500;
+    /* Grosor medio para el texto. */
+    letter-spacing: 0.25em;
+    /* Espaciado amplio entre letras. */
+    font-size: 0.7rem;
+    /* Tamaño pequeño del texto. */
+    border-top: 1px solid var(--border);
+    /* Borde superior visual. */
+    display: flex;
+    /* Activa flex para controlar distribución interna. */
+    flex-direction: column;
+    /* Coloca los elementos apilados verticalmente. */
+    align-items: flex-start;
+    /* Alinea el contenido a la izquierda. */
+}
+
+footer h1,
+footer p {
+    /* Elimina el margen de los encabezados y párrafos del footer. */
+    margin: 0;
+    /* Quita márgenes por defecto. */
+}
+
+footer h1 {
+    /* Tamaño del título del footer. */
+    font-size: 1rem;
+    /* Texto de tamaño medio. */
+}
+
+footer p {
+    /* Estilo del texto de lema del footer. */
+    margin-top: 0.45rem;
+    /* Separación superior del lema con respecto al título. */
+    font-size: 0.58rem;
+    /* Tamaño pequeño del lema. */
+}
+
+footer .social-links {
+    /* Contenedor de iconos sociales del footer. */
+    margin-left: auto;
+    /* Empuja el bloque hacia la derecha. */
+    display: flex;
+    /* Coloca los iconos en fila. */
+    gap: 0.8rem;
+    /* Separación entre iconos. */
+    align-items: center;
+    /* Centra los iconos verticalmente. */
+    margin-top: -2.2rem;
+    /* Sube el bloque para alinearlo visualmente con el resto del footer. */
+}
+
+footer .social-links a {
+    /* Estilo de cada enlace de redes sociales. */
+    color: #f6f3ed;
+    /* Los iconos se muestran blancos. */
+    font-size: 1.2rem;
+    /* Tamaño visible de los iconos. */
+    text-decoration: none;
+    /* Elimina el subrayado de los enlaces. */
+    transition: opacity 0.2s ease;
+    /* Transición suave de brillo al pasar el mouse. */
+}
+
+footer .social-links a:hover {
+    /* Efecto al pasar el ratón por un icono social. */
+    opacity: 0.8;
+    /* Reduce la opacidad para dar feedback visual. */
+}

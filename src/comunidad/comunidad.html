@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>SUMMIT</title>
+    <link rel="icon" href="../../images/logo/summit_logo_filled.png">
+    <link rel="stylesheet" href="stylesComunidad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="titulo_header">
+            <h1>SUMMIT</h1>
+        </div>
+
+        <div class="miPerfil_header">
+            <i class="fa-solid fa-circle-user"></i>
+            <p>Mi Perfil</p>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <div class="logo">
+                <img class="logo_sidebar" src="../../images/logo/summit_logo3.png">
+            </div>
+            <div class="links">
+                <a href="../inicio/indexInicio.html" aria-current="page">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="../puertos/puertos.html" target="_self">
+                    <i class="fa-solid fa-mountain"></i>
+                    <span>Puertos</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-medal"></i>
+                    <span>Mis Parches</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Estadísticas</span>
+                </a>
+
+                <a href="../retos/retos.html">
+                    <i class="fa-solid fa-flag-checkered"></i>
+                    <span>Retos</span>
+                </a>
+
+                <a class="is-active" href="#">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Comunidad</span>
+                </a>
+
+                <a class="sidebar-strava" href="https://www.strava.com" aria-label="Conectar Strava" target="_blank">
+                    <i class="fa-brands fa-strava"></i>
+                    <span>Conectar Strava</span>
+                </a>
+            </div>
+        </aside>
+
+        <section class="main-content">
+            <div class="banner">
+                <p class="banner-kicker">Euskal Herria · Expansión 01</p>
+                <h1>Cada puerto,<br>una historia</h1>
+                <p class="banner-copy">Sube. Tus rutas de carretera y gravel se convierten en una
+                    colección. Conecta Strava y deja que el GPS haga el resto.</p>
+                <a class="banner-button" href="../puertos/puertos.html" target="_self">Explorar los puertos de EH <i
+                        class="fa-solid fa-bicycle"></i></a>
+            </div>
+
+            <div class="recuadros" id="stats">
+                <div class="stat-tile">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                    <span class="stat-valor">104</span>
+                    <span class="stat-label">puertos subidos</span>
+                </div>
+
+                <div class="stat-tile">
+                    <i class="fa-solid fa-road-circle-check"></i>
+                    <span class="stat-valor">750<small>km</small></span>
+                    <span class="stat-label">km recorridos</span>
+                </div>
+
+                <div class="stat-tile">
+                    <i class="fa-solid fa-award"></i>
+                    <span class="stat-valor">32</span>
+                    <span class="stat-label">medallas reunidas</span>
+                </div>
+
+                <div class="stat-tile">
+                    <i class="fa-solid fa-mountain"></i>
+                    <span class="stat-valor">8.450<small>m</small></span>
+                    <span class="stat-label">desnivel acumulado</span>
+                </div>
+            </div>
+
+            <div class="miColeccion">
+                <div class="misParches">
+                    <h2>Mis Parches</h2>
+                    <div class="filtroNiveles">
+                        <a class="levelAll-button" href="#todos">Todos</a>
+                        <a class="levelOne-button" href="#nivel1">Nivel 1</a>
+                        <a class="levelTwo-button" href="#nivel2">Nivel 2</a>
+                        <a class="levelThree-button" href="#nivel3">Nivel 3</a>
+                        <a class="levelFour-button" href="#nivel4">Nivel 4</a>
+                    </div>
+
+                    <div class="parches" id="parchesContainer" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <h1>SUMMIT</h1>
+        <p>RIDE · COLLECT · EXPLORE</p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com" aria-label="Instagram" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://www.strava.com" aria-label="strava" target="blank">
+                <i class="fa-brands fa-strava"></i>
+            </a>
+
+            <a href="https://www.youtube.com" aria-label="youtube" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+
+            <a href="https://github.com/maialenBarredo" aria-label="github" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+
+</html>

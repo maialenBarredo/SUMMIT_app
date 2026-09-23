@@ -10,10 +10,11 @@ La idea principal es convertir cada puerto de montaña en un "parche" o "medalla
 
 La estructura web ya incluye estas páginas:
 
-- `src/inicio/index.html`: pantalla principal / landing page
+- `src/inicio/indexInicio.html`: pantalla principal / landing page
 - `src/puertos/puertos.html`: colección de puertos con galería dinámica
 - `src/retos/retos.html`: vista de retos
-- `src/comunidad/`: espacio para futuras páginas de comunidad
+- `src/perfil/`: espacio preparado para la página de perfil
+- `src/comunidad/comunidad.html`: primera página de comunidad
 - `data/puertosPV.json`: fuente de datos de puertos
 - `images/`: assets y chapas visuales
 
@@ -41,24 +42,29 @@ SUMMIT/
 │   └── photo/
 ├── src/
 │   ├── comunidad/
+│   │   ├── comunidad.html
+│   │   └── stylesComunidad.css
 │   ├── inicio/
 │   │   ├── app.js
-│   │   ├── index.html
-│   │   └── styles.css
+│   │   ├── indexInicio.html
+│   │   └── stylesInicio.css
+│   ├── perfil/
+│   │   └── (pendiente de desarrollo)
 │   ├── puertos/
-│   │   ├── app.js
+│   │   ├── appPuertos.js
 │   │   ├── puertos.html
-│   │   └── styles.css
+│   │   └── stylesPuertos.css
 │   ├── retos/
-│   │   ├── app.js
+│   │   ├── appRetos.js
 │   │   ├── retos.html
-│   │   └── styles.css
+│   │   └── stylesRetos.css
 │   └── ...
 ├── apuntes/
 │   ├── apuntes-css.md
 │   ├── apuntes-html.md
 │   ├── apuntes-js.md
 │   ├── apuntes-summit.md
+│   ├── plan-primera-entrega.md
 │   └── tarjetas-medallas-flip.md
 └── ...
 ```
@@ -76,9 +82,10 @@ python3 -m http.server 8000
 
 Después abre en el navegador:
 
-- http://localhost:8000/src/inicio/index.html
-- http://localhost:8000/src/puertos/puertos.html
-- http://localhost:8000/src/retos/retos.html
+- <http://localhost:8000/src/inicio/indexInicio.html>
+- <http://localhost:8000/src/puertos/puertos.html>
+- <http://localhost:8000/src/retos/retos.html>
+- <http://localhost:8000/src/comunidad/comunidad.html>
 
 ## Datos
 
@@ -93,8 +100,15 @@ El archivo `data/puertosPV.json` contiene la información de los puertos, incluy
 
 ## Roadmap visual y funcional
 
+### Primera entrega
+
+El objetivo de la primera entrega es terminar la página de retos, crear y terminar la página de perfil, preparar una primera propuesta de la página de comunidad y crear un CSS genérico con los estilos comunes del proyecto.
+
+La planificación de trabajo para los 12 días está disponible en [apuntes/plan-primera-entrega.md](apuntes/plan-primera-entrega.md).
+
 ### En curso
 
+- crear un CSS genérico con los estilos comunes del proyecto
 - mantener la navegación responsive
 - mejorar la experiencia mobile
 - ajustar la grilla de puertos para tamaños intermedios

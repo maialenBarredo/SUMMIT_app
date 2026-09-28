@@ -4,7 +4,10 @@
 
 <head>
     <title>SUMMIT</title>
+    <!-- Permite que el diseño use el ancho real de la pantalla del móvil. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../images/logo/summit_logo_filled.png">
+    <link rel="stylesheet" href="../general.css">
     <link rel="stylesheet" href="stylesComunidad.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -42,15 +45,6 @@
                     <span>Puertos</span>
                 </a>
 
-                <a href="#">
-                    <i class="fa-solid fa-medal"></i>
-                    <span>Mis Parches</span>
-                </a>
-
-                <a href="#">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Estadísticas</span>
-                </a>
 
                 <a href="../retos/retos.html">
                     <i class="fa-solid fa-flag-checkered"></i>
@@ -70,54 +64,69 @@
         </aside>
 
         <section class="main-content">
-            <div class="banner">
-                <p class="banner-kicker">Euskal Herria · Expansión 01</p>
-                <h1>Cada puerto,<br>una historia</h1>
-                <p class="banner-copy">Sube. Tus rutas de carretera y gravel se convierten en una
-                    colección. Conecta Strava y deja que el GPS haga el resto.</p>
-                <a class="banner-button" href="../puertos/puertos.html" target="_self">Explorar los puertos de EH <i
-                        class="fa-solid fa-bicycle"></i></a>
+            <div class="community-heading">
+                <p class="community-kicker">SUMMIT · PELOTÓN</p>
+                <h1>La montaña se<br>sube en compañía</h1>
+                <p>Comparte tus ascensiones, descubre nuevos retos y sigue el ritmo de la comunidad ciclista.</p>
             </div>
 
-            <div class="recuadros" id="stats">
-                <div class="stat-tile">
-                    <i class="fa-solid fa-mountain-sun"></i>
-                    <span class="stat-valor">104</span>
-                    <span class="stat-label">puertos subidos</span>
-                </div>
-
-                <div class="stat-tile">
-                    <i class="fa-solid fa-road-circle-check"></i>
-                    <span class="stat-valor">750<small>km</small></span>
-                    <span class="stat-label">km recorridos</span>
-                </div>
-
-                <div class="stat-tile">
-                    <i class="fa-solid fa-award"></i>
-                    <span class="stat-valor">32</span>
-                    <span class="stat-label">medallas reunidas</span>
-                </div>
-
-                <div class="stat-tile">
-                    <i class="fa-solid fa-mountain"></i>
-                    <span class="stat-valor">8.450<small>m</small></span>
-                    <span class="stat-label">desnivel acumulado</span>
-                </div>
-            </div>
-
-            <div class="miColeccion">
-                <div class="misParches">
-                    <h2>Mis Parches</h2>
-                    <div class="filtroNiveles">
-                        <a class="levelAll-button" href="#todos">Todos</a>
-                        <a class="levelOne-button" href="#nivel1">Nivel 1</a>
-                        <a class="levelTwo-button" href="#nivel2">Nivel 2</a>
-                        <a class="levelThree-button" href="#nivel3">Nivel 3</a>
-                        <a class="levelFour-button" href="#nivel4">Nivel 4</a>
+            <div class="community-layout">
+                <section class="community-feed" aria-labelledby="actividad-title">
+                    <div class="section-heading">
+                        <div>
+                            <p class="section-kicker">EN DIRECTO</p>
+                            <h2 id="actividad-title">Actividad reciente</h2>
+                        </div>
+                        <a class="text-link" href="#actividad">Ver todo <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="parches" id="parchesContainer" aria-live="polite"></div>
-                </div>
+                    <article class="activity-card">
+                        <div class="activity-avatar"><img src="../../images/logo/summit_logo_filled.png" alt="Avatar de Ane"></div>
+                        <div class="activity-content">
+                            <div class="activity-meta"><strong>Ane G.</strong><span>· hace 12 min</span></div>
+                            <p>Ha conquistado <strong>Urkiola</strong> y ha sumado una nueva chapa a su colección.</p>
+                            <div class="activity-stats"><span><i class="fa-solid fa-road"></i> 14,2 km</span><span><i class="fa-solid fa-mountain"></i> 842 m+</span><span><i class="fa-regular fa-clock"></i> 1 h 08 min</span></div>
+                            <div class="activity-actions"><a href="#aplaudir"><i class="fa-regular fa-heart"></i> 18</a><a href="#comentar"><i class="fa-regular fa-comment"></i> Comentar</a></div>
+                        </div>
+                    </article>
+
+                    <article class="activity-card">
+                        <div class="activity-avatar activity-avatar-alt"><i class="fa-solid fa-bicycle"></i></div>
+                        <div class="activity-content">
+                            <div class="activity-meta"><strong>Markel R.</strong><span>· hace 46 min</span></div>
+                            <p>Ha completado el reto <strong>Puertos del interior</strong> junto a 4 ciclistas.</p>
+                            <div class="activity-badge"><i class="fa-solid fa-flag-checkered"></i> Reto completado</div>
+                            <div class="activity-actions"><a href="#aplaudir"><i class="fa-regular fa-heart"></i> 24</a><a href="#comentar"><i class="fa-regular fa-comment"></i> Comentar</a></div>
+                        </div>
+                    </article>
+                </section>
+
+                <aside class="community-side">
+                    <section class="community-panel" aria-labelledby="ranking-title">
+                        <div class="section-heading">
+                            <div>
+                                <p class="section-kicker">ESTA SEMANA</p>
+                                <h2 id="ranking-title">Clasificación</h2>
+                            </div>
+                            <i class="fa-solid fa-chart-line panel-icon"></i>
+                        </div>
+                        <ol class="ranking-list">
+                            <li><span class="ranking-position">01</span><span class="ranking-avatar">AG</span><span class="ranking-name">Ane G.</span><strong>86 km</strong></li>
+                            <li><span class="ranking-position">02</span><span class="ranking-avatar">MR</span><span class="ranking-name">Markel R.</span><strong>72 km</strong></li>
+                            <li><span class="ranking-position">03</span><span class="ranking-avatar">LN</span><span class="ranking-name">Leire N.</span><strong>64 km</strong></li>
+                        </ol>
+                        <a class="panel-link" href="#ranking">Ver clasificación completa <i class="fa-solid fa-arrow-right"></i></a>
+                    </section>
+
+                    <section class="community-panel challenge-panel" aria-labelledby="challenge-title">
+                        <p class="section-kicker">RETO COMUNITARIO</p>
+                        <h2 id="challenge-title">Conquistar 3 puertos de nivel 2</h2>
+                        <p class="challenge-copy">Ya somos 128 ciclistas subiendo juntos.</p>
+                        <div class="progress-label"><span>Progreso colectivo</span><strong>68%</strong></div>
+                        <div class="progress-track"><span></span></div>
+                        <a class="challenge-link" href="#reto">Ver el reto <i class="fa-solid fa-arrow-right"></i></a>
+                    </section>
+                </aside>
             </div>
         </section>
 

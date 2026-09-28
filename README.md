@@ -13,8 +13,8 @@ La estructura web ya incluye estas páginas:
 - `src/inicio/indexInicio.html`: pantalla principal / landing page
 - `src/puertos/puertos.html`: colección de puertos con galería dinámica
 - `src/retos/retos.html`: vista de retos
-- `src/perfil/`: espacio preparado para la página de perfil
-- `src/comunidad/comunidad.html`: primera página de comunidad
+- `src/perfil/`: carpeta reservada para la página de perfil; todavía no contiene archivos
+- `src/comunidad/comunidad.html`: primera propuesta visual de la comunidad
 - `data/puertosPV.json`: fuente de datos de puertos
 - `images/`: assets y chapas visuales
 
@@ -28,6 +28,14 @@ La estructura web ya incluye estas páginas:
 - Filtros por nivel de dificultad
 - Diseño responsive en tablet y móvil
 - Paleta visual consistente con la identidad del producto
+
+## Limitaciones actuales
+
+- La página de perfil todavía no está implementada.
+- No existe todavía un CSS genérico compartido; cada página mantiene su propia hoja de estilos.
+- La comunidad tiene una propuesta HTML/CSS, pero su referencia a `app.js` todavía no corresponde a un archivo existente.
+- Los enlaces de perfil y algunas opciones del menú siguen siendo marcadores `#`.
+- La conexión con Strava todavía es un enlace externo de demostración, no una integración real.
 
 ## Estructura del proyecto
 
@@ -106,9 +114,15 @@ El objetivo de la primera entrega es terminar la página de retos, crear y termi
 
 La planificación de trabajo para los 12 días está disponible en [apuntes/plan-primera-entrega.md](apuntes/plan-primera-entrega.md).
 
-### En curso
+### Pendiente de desarrollo
 
+- crear la página de perfil
 - crear un CSS genérico con los estilos comunes del proyecto
+- completar la lógica de comunidad
+- conectar los enlaces de perfil y las opciones pendientes del menú
+
+### Mantenimiento visual
+
 - mantener la navegación responsive
 - mejorar la experiencia mobile
 - ajustar la grilla de puertos para tamaños intermedios

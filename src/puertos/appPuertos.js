@@ -12,6 +12,7 @@ if (menuButton && sidebar) {
 
         if (abierto) {
             sidebar.style.width = "190px";
+            sidebar.style.flexBasis = "190px";
             sidebar.style.padding = "22px 16px";
             sidebar.style.opacity = "1";
             sidebar.style.visibility = "visible";
@@ -21,6 +22,7 @@ if (menuButton && sidebar) {
             sidebar.style.overflow = "visible";
         } else {
             sidebar.style.width = "0px";
+            sidebar.style.flexBasis = "0px";
             sidebar.style.padding = "0";
             sidebar.style.opacity = "0";
             sidebar.style.visibility = "hidden";

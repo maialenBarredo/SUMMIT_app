@@ -109,7 +109,7 @@ main {
     letter-spacing: 0.01em;
 }
 
-.community-heading > p:last-child {
+.community-heading>p:last-child {
     max-width: 34rem;
     margin: 1.25rem 0 0;
     color: rgba(250, 250, 247, 0.78);
@@ -229,7 +229,7 @@ main {
     font-size: 0.72rem;
 }
 
-.activity-content > p {
+.activity-content>p {
     margin: 0.55rem 0 0.8rem;
     color: var(--text-primary);
     font-size: 0.88rem;
@@ -401,7 +401,7 @@ main {
         font-size: clamp(2.4rem, 12vw, 3.5rem);
     }
 
-    .community-heading > p:last-child {
+    .community-heading>p:last-child {
         margin-top: 0.9rem;
         font-size: 0.82rem;
     }

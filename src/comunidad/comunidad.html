@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="es">
 
 <head>
     <title>SUMMIT</title>
     <!-- Permite que el diseño use el ancho real de la pantalla del móvil. -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../images/logo/summit_logo_filled.png">
     <link rel="stylesheet" href="../general.css">
@@ -33,10 +34,10 @@
     <main>
         <aside class="sidebar">
             <div class="logo">
-                <img class="logo_sidebar" src="../../images/logo/summit_logo3.png">
+                <img class="logo_sidebar" src="../../images/logo/summit_logo3.png" alt="logo ubicado en el sidebar">
             </div>
             <div class="links">
-                <a href="../inicio/indexInicio.html" aria-current="page">
+                <a href="../inicio/indexInicio.html">
                     <i class="fa-solid fa-house"></i>
                     <span>Inicio</span>
                 </a>
@@ -51,7 +52,7 @@
                     <span>Retos</span>
                 </a>
 
-                <a class="is-active" href="#">
+                <a class="is-active" href="# " aria-current="page">
                     <i class="fa-solid fa-users"></i>
                     <span>Comunidad</span>
                 </a>
@@ -113,14 +114,36 @@
                             </div>
                             <i class="fa-solid fa-chart-line panel-icon"></i>
                         </div>
-                        <ol class="ranking-list">
-                            <li><span class="ranking-position">01</span><span class="ranking-avatar">AG</span><span
-                                    class="ranking-name">Ane G.</span><strong>86 km</strong></li>
-                            <li><span class="ranking-position">02</span><span class="ranking-avatar">MR</span><span
-                                    class="ranking-name">Markel R.</span><strong>72 km</strong></li>
-                            <li><span class="ranking-position">03</span><span class="ranking-avatar">LN</span><span
-                                    class="ranking-name">Leire N.</span><strong>64 km</strong></li>
-                        </ol>
+                        <table class="ranking-list">
+                            <thead class="ranking-table-head">
+                                <tr>
+                                    <th scope="col">Posición</th>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">Ciclista</th>
+                                    <th scope="col">Distancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="ranking-position" scope="row">01</th>
+                                    <td><span class="ranking-avatar">AG</span></td>
+                                    <td class="ranking-name">Ane G.</td>
+                                    <td><strong>86 km</strong></td>
+                                </tr>
+                                <tr>
+                                    <th class="ranking-position" scope="row">02</th>
+                                    <td><span class="ranking-avatar">MR</span></td>
+                                    <td class="ranking-name">Markel R.</td>
+                                    <td><strong>72 km</strong></td>
+                                </tr>
+                                <tr>
+                                    <th class="ranking-position" scope="row">03</th>
+                                    <td><span class="ranking-avatar">LN</span></td>
+                                    <td class="ranking-name">Leire N.</td>
+                                    <td><strong>64 km</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <a class="panel-link" href="#">Ver clasificación completa <i
                                 class="fa-solid fa-arrow-right"></i></a>
                     </section>

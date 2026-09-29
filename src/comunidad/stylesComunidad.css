@@ -145,7 +145,7 @@ main {
 .section-heading h2,
 .community-panel h2 {
     margin: 0;
-    color: var(--color-snow);
+    color: var(--color-forest);
     font-family: var(--font-display);
     font-size: clamp(1.55rem, 3vw, 2.25rem);
     line-height: 1;
@@ -169,7 +169,7 @@ main {
 .text-link:hover,
 .panel-link:hover,
 .challenge-link:hover {
-    color: var(--color-snow);
+    color: var(--color-mountain);
 }
 
 .activity-card,
@@ -290,26 +290,45 @@ main {
 }
 
 .ranking-list {
-    display: grid;
-    gap: 0.7rem;
+    width: 100%;
     margin: 1rem 0;
+    border-collapse: separate;
+    border-spacing: 0 0.7rem;
     padding: 0;
-    list-style: none;
 }
 
-.ranking-list li {
-    display: flex;
+.ranking-table-head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.ranking-list tr {
     align-items: center;
-    gap: 0.55rem;
     color: var(--text-primary);
     font-size: 0.78rem;
 }
 
 .ranking-position {
     width: 1.25rem;
+    padding: 0;
+    text-align: left;
     color: var(--text-secondary);
     font-family: var(--font-mono);
     font-size: 0.63rem;
+}
+
+.ranking-list td {
+    padding: 0;
+    vertical-align: middle;
+}
+
+.ranking-list td:nth-child(2) {
+    width: 2.35rem;
+    padding-right: 0.55rem;
 }
 
 .ranking-avatar {
@@ -325,7 +344,11 @@ main {
 }
 
 .ranking-name {
-    flex: 1;
+    width: 100%;
+}
+
+.ranking-list td:last-child {
+    text-align: right;
 }
 
 .ranking-list strong {

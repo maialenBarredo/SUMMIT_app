@@ -1,0 +1,443 @@
+body {
+    /* Estilo general del documento body. */
+    margin: 0;
+    /* Elimina el margen predeterminado del navegador. */
+    background-color: var(--background);
+    /* Usa el color de fondo general definido. */
+}
+
+@media (max-width: 600px) {
+
+    /* Ajustes para pantallas pequeñas. */
+    header {
+        /* Reduce el alto y el padding del header en móviles. */
+        min-height: 72px;
+        /* Altura mínima menor para pantallas pequeñas. */
+        padding: 0 1rem;
+        /* Reduce el espacio horizontal interno. */
+    }
+
+    .logo_headerIMG {
+        /* Ajusta el tamaño del logo en versión móvil. */
+        width: 20px;
+        /* Logo más pequeño para caber mejor. */
+    }
+
+    .sidebar {
+        /* Ajusta la sidebar en pantallas chicas. */
+        width: 120px;
+        /* Reduce el ancho de la barra lateral. */
+        padding: 18px 12px;
+        /* Ajusta el padding para el espacio disponible. */
+    }
+}
+
+main {
+    /* Contenedor principal del contenido central. */
+    margin: 0;
+    /* Quita el margen por defecto. */
+    min-height: calc(100vh - 150px);
+    /* Calcula la altura restante de la pantalla. */
+
+    display: flex;
+    /* Coloca los elementos del main en fila. */
+
+    background-color: var(--color-mountain);
+    /* Fondo verde medio para la zona principal. */
+    color: var(--text-primary);
+    /* Color de texto principal del contenido. */
+    font-family: var(--font-body);
+    /* Fuente de la mayoría del contenido. */
+}
+
+
+.main-content {
+    /* Contenedor general para el contenido principal. */
+    flex: 1;
+    /* Ocupa el espacio restante del layout. */
+    padding: 32px;
+    /* Espacio interior para el contenido. */
+}
+
+.main-content h1 {
+    color: var(--color-snow);
+}
+
+
+@media (max-width: 900px) {
+    .parches {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .parches {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .parches {
+        grid-template-columns: 1fr;
+    }
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+}
+
+.community-heading {
+    max-width: 760px;
+    margin-bottom: 2rem;
+}
+
+.community-kicker,
+.section-kicker {
+    margin: 0 0 0.65rem;
+    color: var(--color-ochre);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.community-heading h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5.2rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+}
+
+.community-heading>p:last-child {
+    max-width: 34rem;
+    margin: 1.25rem 0 0;
+    color: rgba(250, 250, 247, 0.78);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.community-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.community-feed,
+.community-side {
+    min-width: 0;
+}
+
+.community-side {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+}
+
+.section-heading h2,
+.community-panel h2 {
+    margin: 0;
+    color: var(--color-forest);
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    line-height: 1;
+}
+
+.section-heading .section-kicker,
+.community-panel .section-kicker {
+    margin-bottom: 0.35rem;
+}
+
+.text-link,
+.panel-link,
+.challenge-link {
+    color: var(--color-ochre);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.text-link:hover,
+.panel-link:hover,
+.challenge-link:hover {
+    color: var(--color-mountain);
+}
+
+.activity-card,
+.community-panel {
+    background: rgba(250, 250, 247, 0.92);
+    border: 1px solid rgba(250, 250, 247, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 16px 30px rgba(0, 31, 29, 0.12);
+}
+
+.activity-card {
+    display: flex;
+    gap: 0.9rem;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.activity-avatar {
+    flex: 0 0 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--color-forest);
+    color: var(--color-ochre);
+    font-size: 1rem;
+}
+
+.activity-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.activity-avatar-alt {
+    background: var(--color-ochre);
+    color: var(--color-forest);
+}
+
+.activity-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-meta {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    color: var(--color-forest);
+    font-size: 0.84rem;
+}
+
+.activity-meta span {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.activity-content>p {
+    margin: 0.55rem 0 0.8rem;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.activity-stats,
+.activity-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.activity-stats {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+}
+
+.activity-stats i {
+    color: var(--color-mountain);
+}
+
+.activity-actions {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--border);
+}
+
+.activity-actions a {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.activity-actions a:hover {
+    color: var(--color-terracotta);
+}
+
+.activity-badge {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 0.35rem 0.55rem;
+    background: rgba(67, 133, 110, 0.14);
+    color: var(--color-mountain);
+    border-radius: 5px;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.community-panel {
+    padding: 1.1rem;
+}
+
+.panel-icon {
+    color: var(--color-ochre);
+}
+
+.ranking-list {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: separate;
+    border-spacing: 0 0.7rem;
+    padding: 0;
+}
+
+.ranking-table-head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.ranking-list tr {
+    align-items: center;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+}
+
+.ranking-position {
+    width: 1.25rem;
+    padding: 0;
+    text-align: left;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.63rem;
+}
+
+.ranking-list td {
+    padding: 0;
+    vertical-align: middle;
+}
+
+.ranking-list td:nth-child(2) {
+    width: 2.35rem;
+    padding-right: 0.55rem;
+}
+
+.ranking-avatar {
+    display: grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background: var(--color-mountain);
+    color: var(--color-snow);
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.ranking-name {
+    width: 100%;
+}
+
+.ranking-list td:last-child {
+    text-align: right;
+}
+
+.ranking-list strong {
+    color: var(--color-mountain);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.challenge-panel {
+    background: var(--color-forest);
+    color: var(--color-snow);
+}
+
+.challenge-panel h2 {
+    color: var(--color-snow);
+    font-size: 1.55rem;
+}
+
+.challenge-copy {
+    margin: 0.8rem 0 1.1rem;
+    color: rgba(250, 250, 247, 0.7);
+    font-size: 0.78rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    color: rgba(250, 250, 247, 0.75);
+    font-size: 0.68rem;
+}
+
+.progress-label strong {
+    color: var(--color-ochre);
+}
+
+.progress-track {
+    height: 0.45rem;
+    overflow: hidden;
+    background: rgba(250, 250, 247, 0.16);
+    border-radius: 999px;
+}
+
+.progress-track span {
+    display: block;
+    width: 68%;
+    height: 100%;
+    background: var(--color-ochre);
+    border-radius: inherit;
+}
+
+.challenge-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+}
+
+@media (max-width: 900px) {
+    .community-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .community-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .community-heading {
+        margin-bottom: 1.25rem;
+    }
+
+    .community-heading h1 {
+        font-size: clamp(2.4rem, 12vw, 3.5rem);
+    }
+
+    .community-heading>p:last-child {
+        margin-top: 0.9rem;
+        font-size: 0.82rem;
+    }
+
+    .community-side {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-card {
+        padding: 0.85rem;
+    }
+
+    .text-link {
+        display: none;
+    }
+}

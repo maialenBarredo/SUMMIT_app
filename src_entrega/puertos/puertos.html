@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <title>SUMMIT</title>
+    <!-- Permite que el diseño use el ancho real de la pantalla del móvil. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../images/logo/summit_logo_filled.png">
+    <link rel="stylesheet" href="../general.css">
+    <link rel="stylesheet" href="stylesPuertos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="titulo_header">
+            <h1>SUMMIT</h1>
+        </div>
+
+        <div class="miPerfil_header">
+            <i class="fa-solid fa-circle-user"></i>
+            <p>Mi Perfil</p>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <div class="logo">
+                <img class="logo_sidebar" src="../../images/logo/summit_logo3.png" alt="logo ubicado en el sidebar">
+            </div>
+            <div class="links">
+                <a href="../inicio/indexInicio.html" target="_self">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a class="is-active" href="../puertos/puertos.html" target="_self">
+                    <i class="fa-solid fa-mountain"></i>
+                    <span>Puertos</span>
+                </a>
+
+                <a href="../retos/retos.html">
+                    <i class="fa-solid fa-flag-checkered"></i>
+                    <span>Retos</span>
+                </a>
+
+                <a href="../comunidad/comunidad.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Comunidad</span>
+                </a>
+
+                <a class="sidebar-strava" href="#" aria-label="Conectar Strava">
+                    <i class="fa-brands fa-strava"></i>
+                    <span>Conectar Strava</span>
+                </a>
+            </div>
+        </aside>
+
+        <section class="main-content">
+            <div class="puertos-intro">
+                <p class="puertos-kicker">EUSKAL HERRIA · COLECCIÓN</p>
+                <h1>Puertos de montaña</h1>
+                <p>Explora cada ascensión y descubre la información de sus vertientes.</p>
+            </div>
+
+            <div class="puertos-grid" id="puertosContainer" aria-live="polite"></div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <h1>SUMMIT</h1>
+        <p>RIDE · COLLECT · EXPLORE</p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/summit_cyclingapp/?utm_source=ig_web_button_share_sheet"
+                aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://www.strava.com" aria-label="strava">
+                <i class="fa-brands fa-strava"></i>
+            </a>
+
+            <a href="https://www.youtube.com" aria-label="youtube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+
+            <a href="https://github.com/maialenBarredo" aria-label="github" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+    </footer>
+    <script src="appPuertos.js"></script>
+</body>
+
+</html>

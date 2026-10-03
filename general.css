@@ -1,0 +1,345 @@
+:root {
+    --color-forest: #051F20;
+    --color-mountain: #003D3A;
+    --color-stone: #2E3A38;
+    --color-cream: #F3F1EA;
+    --color-snow: #FAFAF7;
+    --color-charcoal: #18201F;
+    --color-terracotta: #C97852;
+    --color-ochre: #43856eaf;
+    --level-1: #8FA58A;
+    --level-2: #718EA3;
+    --level-3: #C97852;
+    --level-4: #873F3F;
+    --text-primary: #18201F;
+    --text-secondary: #64706B;
+    --text-light: #FAFAF7;
+    --background: #F3F1EA;
+    --surface: #FAFAF7;
+    --surface-dark: #172A27;
+    --border: #D5D5CC;
+    --border-dark: #64706B;
+    --success: #647A68;
+    --warning: #C6A15B;
+    --danger: #873F3F;
+    --font-display: "Baloo 2", "Segoe UI", sans-serif;
+    --font-body: "Inter", "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 68px;
+    padding: 0 2.25rem;
+    background-color: var(--color-forest);
+    font-family: var(--font-display);
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.24rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(250, 250, 247, 0.28);
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+    background-color: rgba(250, 250, 247, 0.08);
+    border-color: rgba(250, 250, 247, 0.45);
+    transform: translateY(-1px);
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--color-ochre);
+    outline-offset: 3px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 1.15rem;
+    height: 2px;
+    border-radius: 999px;
+    background-color: var(--color-snow);
+}
+
+.logo_headerIMG {
+    display: block;
+    width: 110px;
+    max-width: 100%;
+    height: auto;
+}
+
+.logo_header {
+    flex: 0 0 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo_header {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo_header h1 {
+    margin: 0;
+    color: var(--color-snow);
+    font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.miPerfil_header {
+    flex: 0 0 auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--color-snow);
+}
+
+.miPerfil_header i {
+    font-size: 1.05rem;
+    color: var(--color-snow);
+    line-height: 1;
+}
+
+.miPerfil_header p {
+    margin: 0;
+    color: var(--color-snow);
+    font-size: 0.9rem;
+}
+
+.miPerfil_header:hover {
+    color: var(--text-light);
+    background-color: rgba(250, 250, 247, 0.12);
+}
+
+main {
+    margin: 0;
+    min-height: calc(100vh - 150px);
+    display: flex;
+    background-color: var(--color-mountain);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+.sidebar {
+    width: 190px;
+    min-height: calc(100vh - 150px);
+    flex: 0 0 190px;
+    transition: flex-basis 220ms ease, width 220ms ease, padding 220ms ease, opacity 220ms ease, transform 220ms ease, border-width 220ms ease;
+    background-color: var(--color-forest);
+    color: var(--text-light);
+    padding: 22px 16px;
+    border-right: 1px solid var(--border);
+}
+
+.logo {
+    width: 100%;
+}
+
+.logo_sidebar {
+    display: block;
+    width: 88%;
+    margin: 0 auto;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 2.25rem;
+}
+
+.links a {
+    display: block;
+    color: rgba(250, 250, 247, 0.72);
+    text-decoration: none;
+    padding: 0.7rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.links a:hover,
+.links a:focus-visible {
+    color: var(--text-light);
+    background-color: var(--color-mountain);
+}
+
+.links a:focus-visible {
+    outline: 2px solid var(--color-snow);
+    outline-offset: 2px;
+}
+
+.links a.is-active {
+    color: var(--color-snow);
+    background-color: var(--color-mountain);
+}
+
+.links a.is-active:hover {
+    background-color: var(--color-ochre);
+    color: white;
+}
+
+.sidebar-strava {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(250, 250, 247, 0.22);
+    border-radius: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.sidebar-strava i {
+    color: #FC5200;
+}
+
+.sidebar-strava:hover,
+.sidebar-strava:focus-visible {
+    background-color: rgba(250, 250, 247, 0.08);
+    border-color: var(--color-ochre);
+}
+
+footer {
+    padding: 1.25rem 2rem;
+    background: var(--color-forest);
+    color: #f6f3ed;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    font-size: 0.7rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+footer h1,
+footer p {
+    margin: 0;
+}
+
+footer h1 {
+    font-size: 1rem;
+}
+
+footer p {
+    margin-top: 0.45rem;
+    font-size: 0.58rem;
+}
+
+footer .social-links {
+    margin-left: auto;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    margin-top: -2.2rem;
+}
+
+footer .social-links a {
+    color: #f6f3ed;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+footer .social-links a:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    main {
+        position: relative;
+        display: block;
+    }
+
+    header {
+        min-height: 60px;
+        padding: 0 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .menu-toggle {
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0.4rem;
+        border-radius: 7px;
+    }
+
+    .logo_headerIMG {
+        width: 20px;
+    }
+
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 190px;
+        flex-basis: 190px;
+        min-height: 100%;
+        padding: 16px 12px;
+        box-shadow: 12px 0 24px rgba(23, 42, 39, 0.18);
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: 0;
+        padding: 12px;
+    }
+
+    .titulo_header h1 {
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+    }
+
+    .miPerfil_header p {
+        display: none;
+    }
+
+    footer {
+        padding: 0.85rem 0.75rem;
+    }
+
+    footer .social-links {
+        margin-top: 0.8rem;
+        margin-left: 0;
+    }
+}
